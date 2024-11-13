@@ -14,10 +14,10 @@
 	//Newtonsoft.Json.dll, Struct.PIM.Api.Models.dkk and Struct.PIM.Api.Client.dll in your workspace
 
 	//Set the URL to your struct PIM Api
-    string pimUrl = "http://api.teacher3.cloudtest13.structpim.com/";
+    string pimUrl = "";
 
 	//Set an API key, which has General -> Model generator access
-    string apiKey = "d98a4393-502c-409f-8ee7-e8509dea336f";
+    string apiKey = "";
 
 	//Select if you want to add attributes that are set through the category structure to be added to product and variant models
     bool addCategoryProperties = true;
