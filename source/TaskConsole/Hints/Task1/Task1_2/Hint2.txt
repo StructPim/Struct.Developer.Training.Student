@@ -1,0 +1,16 @@
+﻿#Hint 2
+Looping over the product bogus data, you will need to map the product category (and set it as its primary category).
+
+if (categoryIdentifiers.TryGetValue(product.ErpType, out var categoryId))
+{
+    //Using the ERP type value on the product, a category with a matching alias was found
+    productToCreate.PrimaryCategoryId = categoryId;
+    productToCreate.CategoryIds = new List<int> { categoryId };
+}
+
+You will need to specify the product structure uid. Also set the determined variation definition
+productToCreate.ProductStructureUid = clothingProductStructure.Uid;
+
+Lastly you should map the actual values of the product. For this you should use the existing Mapper class
+Look at the mapper from the previous task. This might help you on how to map localized data.
+                

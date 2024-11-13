@@ -1,0 +1,27 @@
+﻿#Hint 3
+
+var categoryBogusData = _importService.ReadCategoryBogusData();
+
+var existingCatalogues = _apiClient.Catalogues.GetCatalogues();
+var masterCatalogue = existingCatalogues.Single(x => x.Alias == "Master");
+
+var categoriesToCreate = new List<CreateCategoryModel<MasterCategoryModel>>();
+
+foreach (var category in categoryBogusData)
+{
+    var categoryToCreate = new CreateCategoryModel<MasterCategoryModel>();
+    categoryToCreate.CatalogueUid = masterCatalogue.Uid;
+    categoryToCreate.Values = Mapper.Map(category);
+                
+    categoriesToCreate.Add(categoryToCreate);
+}
+
+var batches = categoriesToCreate.Batch(_writeBatchSize);
+var totalBatchesCount = batches.Count();
+var processed = 0;
+
+foreach (var batch in batches)
+{
+    Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+    _apiClient.Catalogues.CreateCategories(batch.ToList());
+}

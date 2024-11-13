@@ -1,0 +1,8 @@
+﻿Hint 3
+Use the method "GetVariantIds" to get the variant ids of the products.
+
+Use the method "GetVariants" to get basic variant information.
+
+Get attributevalues for each batch of variants. Map them using the mapper helper class.
+
+When looping through the products, find the correct variants from our mapped variants - add these to the product mapping.

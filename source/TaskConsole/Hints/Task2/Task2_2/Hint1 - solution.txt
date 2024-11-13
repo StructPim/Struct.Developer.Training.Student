@@ -1,0 +1,17 @@
+﻿Hint 1
+            var updates = _messageClient.GetMessageQueue().Result;
+
+            if (!updates.Any())
+            {
+                Console.WriteLine("No messages in queue. Generate a change in PIM first..");
+                Console.ReadKey();
+            }
+
+            //Get language (en-GB).
+            var language = _apiClient.Languages.GetLanguages().First(x => x.CultureCode == "en-GB");
+
+            //Map the products using the FetchAndMapProductData method
+            var indexModels = FetchAndMapProductData(updates, language);
+
+            //Update the index with the changes
+            _indexService.UpdateDocuments(indexModels, IndexType.ProductIndex, language.CultureCode);

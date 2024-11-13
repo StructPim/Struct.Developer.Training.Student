@@ -1,0 +1,30 @@
+﻿[
+  {
+    "name": "Hugo Boss DK",
+    "id": 83,
+    "phone": "+4520319073",
+    "fax": "12345678",
+    "email": "hugo@boss.dk"
+  },
+  {
+    "name": "Nike SE",
+    "id": 4,
+    "phone": "+4522334455",
+    "fax": "87654321",
+    "email": "nike@runfast.se"
+  },
+  {
+    "name": "Jack and Jones",
+    "id": 100,
+    "phone": "+4598765432",
+    "fax": "65432198",
+    "email": "jack@jones.dk"
+  },
+  {
+    "name": "Bestseller",
+    "id": 101,
+    "phone": "+4575654214",
+    "fax": "45785478",
+    "email": "dk@bestseller.dk"
+  }
+]

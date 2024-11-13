@@ -1,0 +1,54 @@
+﻿Hint 2
+Your mapper should look like this:
+public static ClothingVariantModel Map(VariantBogusModel bogusModel)
+{
+    return new ClothingVariantModel
+    {
+
+        //Map Material as MaterialGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+        Material = new MaterialGlobalListModel() { 
+            Name = new List<LocalizedData<string>>
+            {
+                new LocalizedData<string>
+                {
+                    CultureCode = "da-DK",
+                    Data = bogusModel.Material
+                }
+            }
+        },
+
+        //Map BaseCostPrice
+        BaseCostPrice = bogusModel.BaseCostPrice,
+
+        //Map Color as ColorsGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+        Color = new ColorsGlobalListModel()
+        {
+            Name = new List<LocalizedData<string>>
+            {
+                new LocalizedData<string>
+                {
+                    CultureCode = "da-DK",
+                    Data = bogusModel.Color
+                }
+            },
+                    
+        },
+
+        //Map PackageSize as PackageSizeModel
+        PackageSize = new PackageSizeModel()
+        {
+            Height = bogusModel.PackageSize.Height,
+            Length = bogusModel.PackageSize.Length,
+            Width = bogusModel.PackageSize.Width
+        },
+
+        //Map Sku
+        SKU = bogusModel.Sku,
+
+        //Map Weight
+        Weight = bogusModel.Weight,
+
+        //Map Size
+        Size = bogusModel.Size,
+    };
+}

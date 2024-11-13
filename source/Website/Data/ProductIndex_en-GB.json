@@ -1,0 +1,271 @@
+{
+  "Uid": "9e991b0e-5e58-448f-a7cf-bd8067e272d3",
+  "Type": 0,
+  "Language": "en-GB",
+  "Created": "2024-11-12T15:53:36.3882782+01:00",
+  "Documents": [
+    {
+      "StyleNumber": "S0500",
+      "Description": "<p>Test new description8</p>",
+      "Brand": { "Name": "H&M", "Logo": null },
+      "Variants": [
+        {
+          "SKU": "S0500-000",
+          "Price": 29.87,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Nylon" },
+              { "CultureCode": "da-DK", "Data": "Nylon" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105363,
+          "Name": "S0500-000 - 32"
+        },
+        {
+          "SKU": "S0500-001",
+          "Price": 55.52,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Polyester" },
+              { "CultureCode": "da-DK", "Data": "Polyester" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105364,
+          "Name": "S0500-001 - 32"
+        },
+        {
+          "SKU": "S0500-002",
+          "Price": 18.08,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Suede" },
+              { "CultureCode": "da-DK", "Data": "Suede" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105365,
+          "Name": "S0500-002 - 36"
+        },
+        {
+          "SKU": "S0500-003",
+          "Price": 75.27,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Suede" },
+              { "CultureCode": "da-DK", "Data": "Suede" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105366,
+          "Name": "S0500-003 - 36"
+        },
+        {
+          "SKU": "S0500-004",
+          "Price": 95.62,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Cotton" },
+              { "CultureCode": "da-DK", "Data": "Cotton" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105367,
+          "Name": "S0500-004 - 36"
+        },
+        {
+          "SKU": "S0500-005",
+          "Price": 22.36,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Wool" },
+              { "CultureCode": "da-DK", "Data": "Wool" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105368,
+          "Name": "S0500-005 - 36"
+        },
+        {
+          "SKU": "S0500-006",
+          "Price": 15.23,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Leather" },
+              { "CultureCode": "da-DK", "Data": "Leather" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105369,
+          "Name": "S0500-006 - 30"
+        },
+        {
+          "SKU": "S0500-007",
+          "Price": 26.37,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Nylon" },
+              { "CultureCode": "da-DK", "Data": "Nylon" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105370,
+          "Name": "S0500-007 - 34"
+        },
+        {
+          "SKU": "S0500-008",
+          "Price": 54.96,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Leather" },
+              { "CultureCode": "da-DK", "Data": "Leather" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105371,
+          "Name": "S0500-008 - 34"
+        },
+        {
+          "SKU": "S0500-009",
+          "Price": 72.63,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Cotton" },
+              { "CultureCode": "da-DK", "Data": "Cotton" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105372,
+          "Name": "S0500-009 - 38"
+        },
+        {
+          "SKU": "S0500-010",
+          "Price": 85.79,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Cotton" },
+              { "CultureCode": "da-DK", "Data": "Cotton" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105373,
+          "Name": "S0500-010 - 32"
+        },
+        {
+          "SKU": "S0500-011",
+          "Price": 17.24,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Leather" },
+              { "CultureCode": "da-DK", "Data": "Leather" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105374,
+          "Name": "S0500-011 - 36"
+        },
+        {
+          "SKU": "S0500-012",
+          "Price": 88.06,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Leather" },
+              { "CultureCode": "da-DK", "Data": "Leather" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105375,
+          "Name": "S0500-012 - 34"
+        },
+        {
+          "SKU": "S0500-013",
+          "Price": 41.98,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Wool" },
+              { "CultureCode": "da-DK", "Data": "Wool" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105376,
+          "Name": "S0500-013 - 32"
+        },
+        {
+          "SKU": "S0500-014",
+          "Price": 86.74,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Wool" },
+              { "CultureCode": "da-DK", "Data": "Wool" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105377,
+          "Name": "S0500-014 - 30"
+        },
+        {
+          "SKU": "S0500-015",
+          "Price": 39.79,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Cotton" },
+              { "CultureCode": "da-DK", "Data": "Cotton" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105378,
+          "Name": "S0500-015 - 38"
+        },
+        {
+          "SKU": "S0500-016",
+          "Price": 59.12,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Suede" },
+              { "CultureCode": "da-DK", "Data": "Suede" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105379,
+          "Name": "S0500-016 - 36"
+        },
+        {
+          "SKU": "S0500-017",
+          "Price": 85.89,
+          "Material": {
+            "Name": [
+              { "CultureCode": "en-GB", "Data": "Leather" },
+              { "CultureCode": "da-DK", "Data": "Leather" }
+            ]
+          },
+          "PrimaryImage": null,
+          "ExtraImages": null,
+          "Id": 105380,
+          "Name": "S0500-017 - 30"
+        }
+      ],
+      "Categories": [376],
+      "ImageUrl": "placeholder_2.webp",
+      "Id": 3501,
+      "Name": "Premium Straight Leg Jeans"
+    }
+  ]
+}

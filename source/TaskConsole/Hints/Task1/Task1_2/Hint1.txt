@@ -1,0 +1,12 @@
+﻿#Hint 1
+In our mapping we need to be able to classify products in their correct category. For this we will utilize the "Identifiers" on categories.
+Identifers are attribute valeus which are configured to be unqiue for entities in PIM.
+    var categoryIdentifiers = _apiClient.Catalogues.GetInternalIdMap("Alias");
+
+
+A product in PIM always has a product structure, which defines the model of the product.
+    var clothingProductStructure = _apiClient.ProductStructures.GetProductStructures().Single(x => x.Alias == "Clothing");
+
+When a product structure is defined to also have variants, we should specify which type of variation definition the product is using.
+The variation definitions are defined on the product structure. 
+    var variationDefinition = clothingProductStructure.VariationDefinitions.Single(v => v.Name == "Clothing");

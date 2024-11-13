@@ -1,0 +1,34 @@
+﻿Hint 3
+//Get bogus data and map it to PIM data model
+    var variantBogusData = _importService.ReadVariantBogusData();
+
+    //Get existing product identifiers to determine what product each variant should be created under
+    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber");
+
+    //Loop over bogus variants and map them to a createmodel
+    var variantsToCreate = new List<CreateVariantModel<ClothingVariantModel>>();
+    foreach (var variant in variantBogusData)
+    {
+        if (productIdentifiers.TryGetValue(variant.StyleNo, out var productId))
+        {
+            var variantToCreate = new CreateVariantModel<ClothingVariantModel>();
+            variantToCreate.ProductId = productId;
+            variantToCreate.Values = Mapper.Map(variant);
+            variantsToCreate.Add(variantToCreate);
+        }
+        else
+        {
+            Console.WriteLine($"Could not create variant as it is missing a product, variant sku: {variant.Sku}");
+        }
+    }
+
+
+    var batches = variantsToCreate.Batch(_writeBatchSize);
+    var totalBatchesCount = batches.Count();
+    var processed = 0;
+
+    foreach (var batch in batches)
+    {
+        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+        _apiClient.Variants.CreateVariants(batch.ToList());
+    }

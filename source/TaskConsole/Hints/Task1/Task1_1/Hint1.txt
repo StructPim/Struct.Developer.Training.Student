@@ -1,0 +1,7 @@
+﻿#Hint 1
+First off you need to grab the master catalogue using the following method:
+
+var existingCatalogues = _apiClient.Catalogues.GetCatalogues();
+var masterCatalogue = existingCatalogues.Single(x => x.Alias == "Master");
+
+Now that you have this information, you should start mapping the bogus data into the MasterCategoryModel.

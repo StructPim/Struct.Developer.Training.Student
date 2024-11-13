@@ -1,0 +1,19 @@
+﻿#Hint 2
+Now you should be in the process of mapping your bogus data to the correct model.
+Do this in a loop, and append the correct data to a new list.
+
+Remember to set the master catalogue UID on the category model.
+
+Here is how you loop could look like:
+
+foreach (var category in categoryBogusData)
+{
+    var categoryToCreate = new CreateCategoryModel<MasterCategoryModel>();
+    categoryToCreate.CatalogueUid = masterCatalogue.Uid;
+    categoryToCreate.Values = Mapper.Map(category);
+                
+    categoriesToCreate.Add(categoryToCreate);
+}
+
+Lastly , you should be able to create the categories in batches.
+

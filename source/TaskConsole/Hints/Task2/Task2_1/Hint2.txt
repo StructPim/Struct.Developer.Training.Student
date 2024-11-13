@@ -1,0 +1,15 @@
+﻿Hint 2
+Map the PIM product data to the index model. You mapper should look like this:
+public static ProductIndexModel Map(LanguageModel language, int productId, ClothingProductModel product, List<VariantIndexModel> productVariants, List<int> productClassification)
+{
+    return new ProductIndexModel
+    {
+        Id = productId,
+        Name = product.Name.FirstOrDefault(x=>x.CultureCode == language.CultureCode)?.Data ?? string.Empty,
+        StyleNumber = product.StyleNumber,
+        Description = product.Description.FirstOrDefault(x => x.CultureCode == language.CultureCode)?.Data ?? string.Empty,
+        Brand = product.Brand,
+        Categories = productClassification,
+        Variants = productVariants
+    };
+}

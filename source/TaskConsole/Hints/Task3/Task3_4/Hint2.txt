@@ -1,0 +1,21 @@
+﻿Hint 2
+
+Your calculation logic should be looking something like this:
+foreach (var variant in variantValues)
+{
+    //skip if no base cost price
+    if (!variant.Values.BaseCostPrice.HasValue)
+        continue;
+
+    variant.Values.CostPrices = new List<CostPricesModel>();
+    foreach (var currency in currencies.GlobalListValues)
+    {
+        variant.Values.CostPrices.Add(new CostPricesModel
+        {
+            Currency = currency.Value,
+            Price = variant.Values.BaseCostPrice.Value * currency.Value.ConversionFactor
+        });
+    }
+
+    updateModel.Add(variant.VariantId, new UpdateVariantModel<ClothingVariantModel> { Values = variant.Values });
+}

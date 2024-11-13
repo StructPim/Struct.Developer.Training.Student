@@ -1,0 +1,502 @@
+﻿[
+  {
+    "nameEng": "Graphic T-Shirts",
+    "nameDa": "Grafiske T-Shirts",
+    "alias": "graphict-shirts"
+  },
+  {
+    "nameEng": "Plain T-Shirts",
+    "nameDa": "Ensfarvede T-Shirts",
+    "alias": "plaint-shirts"
+  },
+  {
+    "nameEng": "Printed T-Shirts",
+    "nameDa": "Trykte T-Shirts",
+    "alias": "printedt-shirts"
+  },
+  {
+    "nameEng": "V-Neck T-Shirts",
+    "nameDa": "V-hals T-Shirts",
+    "alias": "v-neckt-shirts"
+  },
+  {
+    "nameEng": "Polo T-Shirts",
+    "nameDa": "Polo T-Shirts",
+    "alias": "polot-shirts"
+  },
+  {
+    "nameEng": "Long Sleeve T-Shirts",
+    "nameDa": "Lang\u00e6rmede T-Shirts",
+    "alias": "longsleevet-shirts"
+  },
+  {
+    "nameEng": "Short Sleeve T-Shirts",
+    "nameDa": "Kort\u00e6rmede T-Shirts",
+    "alias": "shortsleevet-shirts"
+  },
+  {
+    "nameEng": "Sleeveless T-Shirts",
+    "nameDa": "\u00c6rmel\u00f8se T-Shirts",
+    "alias": "sleevelesst-shirts"
+  },
+  {
+    "nameEng": "Henley T-Shirts",
+    "nameDa": "Henley T-Shirts",
+    "alias": "henleyt-shirts"
+  },
+  {
+    "nameEng": "Raglan T-Shirts",
+    "nameDa": "Raglan T-Shirts",
+    "alias": "raglant-shirts"
+  },
+  {
+    "nameEng": "Muscle Fit T-Shirts",
+    "nameDa": "Muskel Fit T-Shirts",
+    "alias": "musclefitt-shirts"
+  },
+  {
+    "nameEng": "Crew Neck T-Shirts",
+    "nameDa": "Crew Neck T-Shirts",
+    "alias": "crewneckt-shirts"
+  },
+  {
+    "nameEng": "Baseball T-Shirts",
+    "nameDa": "Baseball T-Shirts",
+    "alias": "baseballt-shirts"
+  },
+  {
+    "nameEng": "Crop T-Shirts",
+    "nameDa": "Crop T-Shirts",
+    "alias": "cropt-shirts"
+  },
+  {
+    "nameEng": "Oversized T-Shirts",
+    "nameDa": "Oversize T-Shirts",
+    "alias": "oversizedt-shirts"
+  },
+  {
+    "nameEng": "Pocket T-Shirts",
+    "nameDa": "Lomme T-Shirts",
+    "alias": "pockett-shirts"
+  },
+  {
+    "nameEng": "Tie-Dye T-Shirts",
+    "nameDa": "Tie-Dye T-Shirts",
+    "alias": "tie-dyet-shirts"
+  },
+  {
+    "nameEng": "Thermal T-Shirts",
+    "nameDa": "Termiske T-Shirts",
+    "alias": "thermalt-shirts"
+  },
+  {
+    "nameEng": "Eco-Friendly T-Shirts",
+    "nameDa": "Milj\u00f8venlige T-Shirts",
+    "alias": "eco-friendlyt-shirts"
+  },
+  {
+    "nameEng": "Striped T-Shirts",
+    "nameDa": "Stribede T-Shirts",
+    "alias": "stripedt-shirts"
+  },
+  {
+    "nameEng": "Fitted T-Shirts",
+    "nameDa": "T\u00e6tsiddende T-Shirts",
+    "alias": "fittedt-shirts"
+  },
+  {
+    "nameEng": "Vintage T-Shirts",
+    "nameDa": "Vintage T-Shirts",
+    "alias": "vintaget-shirts"
+  },
+  {
+    "nameEng": "Performance T-Shirts",
+    "nameDa": "Performance T-Shirts",
+    "alias": "performancet-shirts"
+  },
+  {
+    "nameEng": "Tank Tops",
+    "nameDa": "Tanktoppe",
+    "alias": "tanktops"
+  },
+  {
+    "nameEng": "Graphic Tank Tops",
+    "nameDa": "Grafiske Tanktoppe",
+    "alias": "graphictanktops"
+  },
+  {
+    "nameEng": "Layering T-Shirts",
+    "nameDa": "Lag T-Shirts",
+    "alias": "layeringt-shirts"
+  },
+  {
+    "nameEng": "Active T-Shirts",
+    "nameDa": "Aktive T-Shirts",
+    "alias": "activet-shirts"
+  },
+  {
+    "nameEng": "Color Block T-Shirts",
+    "nameDa": "Color Block T-Shirts",
+    "alias": "colorblockt-shirts"
+  },
+  {
+    "nameEng": "Embroidered T-Shirts",
+    "nameDa": "Broderede T-Shirts",
+    "alias": "embroideredt-shirts"
+  },
+  {
+    "nameEng": "Mesh T-Shirts",
+    "nameDa": "Net T-Shirts",
+    "alias": "mesht-shirts"
+  },
+  {
+    "nameEng": "Boxy T-Shirts",
+    "nameDa": "Boxy T-Shirts",
+    "alias": "boxyt-shirts"
+  },
+  {
+    "nameEng": "Sports Shoes",
+    "nameDa": "Sportssko",
+    "alias": "sportsshoes"
+  },
+  {
+    "nameEng": "Casual Shoes",
+    "nameDa": "Afslappede Sko",
+    "alias": "casualshoes"
+  },
+  {
+    "nameEng": "Formal Shoes",
+    "nameDa": "Formelle Sko",
+    "alias": "formalshoes"
+  },
+  {
+    "nameEng": "Running Shoes",
+    "nameDa": "L\u00f8besko",
+    "alias": "runningshoes"
+  },
+  {
+    "nameEng": "Hiking Shoes",
+    "nameDa": "Vandresko",
+    "alias": "hikingshoes"
+  },
+  {
+    "nameEng": "Slip-On Shoes",
+    "nameDa": "Sko uden Sn\u00f8reb\u00e5nd",
+    "alias": "slip-onshoes"
+  },
+  {
+    "nameEng": "Sneakers",
+    "nameDa": "Sneakers",
+    "alias": "sneakers"
+  },
+  {
+    "nameEng": "Loafers",
+    "nameDa": "Loafers",
+    "alias": "loafers"
+  },
+  {
+    "nameEng": "Derby Shoes",
+    "nameDa": "Derby Sko",
+    "alias": "derbyshoes"
+  },
+  {
+    "nameEng": "Oxford Shoes",
+    "nameDa": "Oxford Sko",
+    "alias": "oxfordshoes"
+  },
+  {
+    "nameEng": "Boat Shoes",
+    "nameDa": "B\u00e5dsko",
+    "alias": "boatshoes"
+  },
+  {
+    "nameEng": "Brogue Shoes",
+    "nameDa": "Brogues Sko",
+    "alias": "brogueshoes"
+  },
+  {
+    "nameEng": "Moccasins",
+    "nameDa": "Mokkasiner",
+    "alias": "moccasins"
+  },
+  {
+    "nameEng": "Skate Shoes",
+    "nameDa": "Skatesko",
+    "alias": "skateshoes"
+  },
+  {
+    "nameEng": "Espadrilles",
+    "nameDa": "Espadriller",
+    "alias": "espadrilles"
+  },
+  {
+    "nameEng": "High Top Sneakers",
+    "nameDa": "High Top Sneakers",
+    "alias": "hightopsneakers"
+  },
+  {
+    "nameEng": "Low Top Sneakers",
+    "nameDa": "Low Top Sneakers",
+    "alias": "lowtopsneakers"
+  },
+  {
+    "nameEng": "Training Shoes",
+    "nameDa": "Tr\u00e6ningssko",
+    "alias": "trainingshoes"
+  },
+  {
+    "nameEng": "Basketball Shoes",
+    "nameDa": "Basketball Sko",
+    "alias": "basketballshoes"
+  },
+  {
+    "nameEng": "Cross-Training Shoes",
+    "nameDa": "Cross-Training Sko",
+    "alias": "cross-trainingshoes"
+  },
+  {
+    "nameEng": "Climbing Shoes",
+    "nameDa": "Klatresko",
+    "alias": "climbingshoes"
+  },
+  {
+    "nameEng": "Slip-Resistant Shoes",
+    "nameDa": "Skridsikre Sko",
+    "alias": "slip-resistantshoes"
+  },
+  {
+    "nameEng": "Cycling Shoes",
+    "nameDa": "Cykelsko",
+    "alias": "cyclingshoes"
+  },
+  {
+    "nameEng": "Trail Running Shoes",
+    "nameDa": "Trail Running Sko",
+    "alias": "trailrunningshoes"
+  },
+  {
+    "nameEng": "Golf Shoes",
+    "nameDa": "Golfsko",
+    "alias": "golfshoes"
+  },
+  {
+    "nameEng": "Indoor Court Shoes",
+    "nameDa": "Indend\u00f8rs Sko",
+    "alias": "indoorcourtshoes"
+  },
+  {
+    "nameEng": "Bowling Shoes",
+    "nameDa": "Bowlingsko",
+    "alias": "bowlingshoes"
+  },
+  {
+    "nameEng": "Dance Shoes",
+    "nameDa": "Dansesko",
+    "alias": "danceshoes"
+  },
+  {
+    "nameEng": "Water Shoes",
+    "nameDa": "Vandsko",
+    "alias": "watershoes"
+  },
+  {
+    "nameEng": "Skater Shoes",
+    "nameDa": "Skatesko",
+    "alias": "skatershoes"
+  },
+  {
+    "nameEng": "Chelsea Boots",
+    "nameDa": "Chelsea St\u00f8vler",
+    "alias": "chelseaboots"
+  },
+  {
+    "nameEng": "Jeans",
+    "nameDa": "Jeans",
+    "alias": "jeans"
+  },
+  {
+    "nameEng": "Chinos",
+    "nameDa": "Chinos",
+    "alias": "chinos"
+  },
+  {
+    "nameEng": "Cargo Pants",
+    "nameDa": "Cargo Bukser",
+    "alias": "cargopants"
+  },
+  {
+    "nameEng": "Track Pants",
+    "nameDa": "Tr\u00e6ningsbukser",
+    "alias": "trackpants"
+  },
+  {
+    "nameEng": "Sweatpants",
+    "nameDa": "Joggingbukser",
+    "alias": "sweatpants"
+  },
+  {
+    "nameEng": "Slim Fit Jeans",
+    "nameDa": "Slim Fit Jeans",
+    "alias": "slimfitjeans"
+  },
+  {
+    "nameEng": "Bootcut Jeans",
+    "nameDa": "Bootcut Jeans",
+    "alias": "bootcutjeans"
+  },
+  {
+    "nameEng": "Skinny Jeans",
+    "nameDa": "Skinny Jeans",
+    "alias": "skinnyjeans"
+  },
+  {
+    "nameEng": "Wide Leg Jeans",
+    "nameDa": "Bred Ben Jeans",
+    "alias": "widelegjeans"
+  },
+  {
+    "nameEng": "High Waist Jeans",
+    "nameDa": "H\u00f8j Talje Jeans",
+    "alias": "highwaistjeans"
+  },
+  {
+    "nameEng": "Low Waist Jeans",
+    "nameDa": "Lav Talje Jeans",
+    "alias": "lowwaistjeans"
+  },
+  {
+    "nameEng": "Ripped Jeans",
+    "nameDa": "Rippede Jeans",
+    "alias": "rippedjeans"
+  },
+  {
+    "nameEng": "Straight Leg Jeans",
+    "nameDa": "Lige Ben Jeans",
+    "alias": "straightlegjeans"
+  },
+  {
+    "nameEng": "Flared Pants",
+    "nameDa": "Udsvingede Bukser",
+    "alias": "flaredpants"
+  },
+  {
+    "nameEng": "Baggy Pants",
+    "nameDa": "Posede Bukser",
+    "alias": "baggypants"
+  },
+  {
+    "nameEng": "Tapered Pants",
+    "nameDa": "Tilspidsede Bukser",
+    "alias": "taperedpants"
+  },
+  {
+    "nameEng": "Corduroy Pants",
+    "nameDa": "Fl\u00f8jl Bukser",
+    "alias": "corduroypants"
+  },
+  {
+    "nameEng": "Drawstring Pants",
+    "nameDa": "Sn\u00f8re Bukser",
+    "alias": "drawstringpants"
+  },
+  {
+    "nameEng": "Pleated Pants",
+    "nameDa": "Plisserede Bukser",
+    "alias": "pleatedpants"
+  },
+  {
+    "nameEng": "Jogger Pants",
+    "nameDa": "Joggingbukser",
+    "alias": "joggerpants"
+  },
+  {
+    "nameEng": "Stretch Pants",
+    "nameDa": "Str\u00e6kbukser",
+    "alias": "stretchpants"
+  },
+  {
+    "nameEng": "Bermuda Shorts",
+    "nameDa": "Bermuda Shorts",
+    "alias": "bermudashorts"
+  },
+  {
+    "nameEng": "Denim Shorts",
+    "nameDa": "Denim Shorts",
+    "alias": "denimshorts"
+  },
+  {
+    "nameEng": "Cargo Shorts",
+    "nameDa": "Cargo Shorts",
+    "alias": "cargoshorts"
+  },
+  {
+    "nameEng": "Linen Pants",
+    "nameDa": "Linned Bukser",
+    "alias": "linenpants"
+  },
+  {
+    "nameEng": "Capri Pants",
+    "nameDa": "Capri Bukser",
+    "alias": "capripants"
+  },
+  {
+    "nameEng": "Overalls",
+    "nameDa": "Overall",
+    "alias": "overalls"
+  },
+  {
+    "nameEng": "Formal Pants",
+    "nameDa": "Formelle Bukser",
+    "alias": "formalpants"
+  },
+  {
+    "nameEng": "Leather Pants",
+    "nameDa": "L\u00e6der Bukser",
+    "alias": "leatherpants"
+  },
+  {
+    "nameEng": "Windbreaker Pants",
+    "nameDa": "Vindbukser",
+    "alias": "windbreakerpants"
+  },
+  {
+    "nameEng": "Cropped Pants",
+    "nameDa": "Afklippede Bukser",
+    "alias": "croppedpants"
+  },
+  {
+    "nameEng": "Yoga Pants",
+    "nameDa": "Yoga Bukser",
+    "alias": "yogapants"
+  },
+  {
+    "nameEng": "Palazzo Pants",
+    "nameDa": "Palazzo Bukser",
+    "alias": "palazzopants"
+  },
+  {
+    "nameEng": "Trousers",
+    "nameDa": "Bukser",
+    "alias": "trousers"
+  },
+  {
+    "nameEng": "Khakis",
+    "nameDa": "Khakis",
+    "alias": "khakis"
+  },
+  {
+    "nameEng": "Utility Pants",
+    "nameDa": "Utility Bukser",
+    "alias": "utilitypants"
+  },
+  {
+    "nameEng": "Harem Pants",
+    "nameDa": "Harem Bukser",
+    "alias": "harempants"
+  },
+  {
+    "nameEng": "Fleece Pants",
+    "nameDa": "Fleece Bukser",
+    "alias": "fleecepants"
+  }
+]

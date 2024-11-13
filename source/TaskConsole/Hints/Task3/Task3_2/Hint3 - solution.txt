@@ -1,0 +1,62 @@
+﻿Hint 3
+Your solution should look something like this:
+public void DeltaUpdateExistingAndNewVariants()
+{
+    //Get bogus data and map it to PIM data model
+    var variantBogusData = _importService.ReadExistingAndNewVariantDeltaBogusData();
+
+    //Get existing product identifiers to determine what product each variant should be created under
+    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber");
+
+    //Get existing variant identifiers to determine if a variant should be updated or created
+    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
+
+    //Loop over bogus variants and map them to a create or update model
+    var variantsToUpdate = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
+    var variantsToCreate = new List<CreateVariantModel<ClothingVariantModel>>();
+    foreach (var variant in variantBogusData)
+    {
+        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
+        {
+            var variantToUpdateModel = new UpdateVariantModel<ClothingVariantModel>();
+            variantToUpdateModel.Values = Mapper.Map(variant);
+            variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
+        }
+        else
+        {
+            if (productIdentifiers.TryGetValue(variant.StyleNo, out var productId))
+            {
+                var variantToCreate = new CreateVariantModel<ClothingVariantModel>();
+                variantToCreate.ProductId = productId;
+                variantToCreate.Values = Mapper.Map(variant);
+                variantsToCreate.Add(variantToCreate);
+            }
+            else
+            {
+                Console.WriteLine($"Could not create variant as it is missing a product, variant sku: {variant.Sku}");
+            }
+        }
+    }
+
+    var createBatches = variantsToCreate.Batch(_writeBatchSize);
+    var totalCreateBatchesCount = createBatches.Count();
+    var createProcessed = 0;
+
+    foreach (var batch in createBatches)
+    {
+        Console.WriteLine($"Done processing create batch {++createProcessed}/{totalCreateBatchesCount}");
+        _apiClient.Variants.CreateVariants<ClothingVariantModel>(batch.ToList());
+    }
+
+
+    var updateBatches = variantsToUpdate.Batch(_writeBatchSize);
+    var totalUpdateBatchesCount = updateBatches.Count();
+    var updateProcessed = 0;
+
+    foreach (var batch in updateBatches)
+    {
+        Console.WriteLine($"Done processing update batch {++updateProcessed}/{totalUpdateBatchesCount}");
+        var batchDict = batch.ToDictionary(x => x.Key, x => x.Value);
+        _apiClient.Variants.UpdateVariants<ClothingVariantModel>(batchDict);
+    }
+}

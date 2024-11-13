@@ -1,0 +1,46 @@
+﻿Hint 4
+Your code should look something like this:
+
+    //Get bogus data and map it to PIM data model
+    var productBogusData = _importService.ReadProductBogusData();
+
+    //Get existing category identifiers to determine placement/classification of products
+    var categoryIdentifiers = _apiClient.Catalogues.GetInternalIdMap("Alias");
+
+    //Get the clothing product structure
+    var clothingProductStructure = _apiClient.ProductStructures.GetProductStructures().Single(x => x.Alias == "Clothing");
+
+    //Select the variation definition for clothing products from the product structure above
+    var variationDefinition = clothingProductStructure.VariationDefinitions.Single(v => v.Name == "Clothing");
+
+    var productsToCreate = new List<CreateProductModel<ClothingProductModel>>();
+
+    //Loop over bogus products and map them to a createmodel
+    foreach (var product in productBogusData)
+    {
+        var productToCreate = new CreateProductModel<ClothingProductModel>();
+                
+        if (categoryIdentifiers.TryGetValue(product.ErpType, out var categoryId))
+        {
+            //Using the ERP type value on the product, a category with a matching alias was found
+            productToCreate.PrimaryCategoryId = categoryId;
+            productToCreate.CategoryIds = new List<int> { categoryId };
+        }
+
+        productToCreate.ProductStructureUid = clothingProductStructure.Uid;
+        productToCreate.VariationDefinitionUid = variationDefinition.Uid;
+
+
+        productToCreate.Values = Mapper.Map(product);                
+        productsToCreate.Add(productToCreate);
+    }
+
+    var batches = productsToCreate.Batch(_writeBatchSize);
+    var totalBatchesCount = batches.Count();
+    var processed = 0;
+
+    foreach (var batch in batches)
+    {
+        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+        _apiClient.Products.CreateProducts(batch.ToList());
+    }

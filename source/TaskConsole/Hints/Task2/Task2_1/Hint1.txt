@@ -1,0 +1,7 @@
+﻿Hint 1
+Start your batch handling, with fetching attributevalues for the products. You should use the strongly typed API calls for this.
+	var productAttributeValues = _apiClient.Products.GetProductAttributeValues<ClothingProductModel>(new ProductValuesRequestModel()
+    {
+        ProductIds = batch.ToList()
+    });
+

@@ -1,0 +1,52 @@
+﻿Hint 3
+Your solution should look something like this:
+public void UpdateCostPrices()
+{
+    //Fetch all variantIds from PIM
+    var variantIds = _apiClient.Variants.GetVariantIds();
+
+    //Find the currencies global list
+    var currencyGlobalList = _apiClient.GlobalLists.GetGlobalList("Currency");
+
+    //Fetch currencies which contains the conversionrates
+    var currencies = _apiClient.GlobalLists.GetGlobalListValues<CurrencyGlobalListModel>(currencyGlobalList.Uid);
+
+    var batches = variantIds.Batch(_writeBatchSize);
+    var totalBatchesCount = batches.Count();
+    var processed = 0;
+
+    foreach (var batch in batches)
+    {
+        var updateModel = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
+
+        var variantValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel
+        {
+            VariantIds = batch.ToList()
+        });
+
+        foreach (var variant in variantValues)
+        {
+            //skip if no base cost price
+            if (!variant.Values.BaseCostPrice.HasValue)
+                continue;
+
+            variant.Values.CostPrices = new List<CostPricesModel>();
+            foreach (var currency in currencies.GlobalListValues)
+            {
+                variant.Values.CostPrices.Add(new CostPricesModel
+                {
+                    Currency = currency.Value,
+                    Price = variant.Values.BaseCostPrice.Value * currency.Value.ConversionFactor
+                });
+            }
+
+            updateModel.Add(variant.VariantId, new UpdateVariantModel<ClothingVariantModel> { Values = variant.Values });
+        }
+
+        Console.WriteLine($"Calculated {updateModel.Count} variants. Updating...");
+
+        _apiClient.Variants.UpdateVariants<ClothingVariantModel>(updateModel);
+
+        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+    }
+}

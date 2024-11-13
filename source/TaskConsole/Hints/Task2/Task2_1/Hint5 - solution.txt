@@ -1,0 +1,79 @@
+﻿Hint 5
+
+
+private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
+{
+    var batches = productIds.Batch(_batchSize);
+    var totalBatchesCount = batches.Count();
+    var processed = 0;
+
+    var indexModels = new List<IndexModel>();
+
+    foreach (var batch in batches)
+    {
+        //Fetch product attribute values in batches in task 2.1a
+        var productAttributeValues = _apiClient.Products.GetProductAttributeValues<ClothingProductModel>(new ProductValuesRequestModel()
+        {
+            ProductIds = batch.ToList()
+        });
+
+        //fetch variants for products in task 2.1b
+        var productToVariants = _apiClient.Products.GetVariantIds(batch.ToList());
+
+        //fetch variant attribute values and fetch values in batches in task 2.1b
+        var allVariants = _apiClient.Variants.GetVariants(productToVariants.SelectMany(x => x.Value).ToList());
+
+
+        var productToClassification = new Dictionary<int, List<ProductClassificationModel>>();
+        //fetch classification for products into productToClassification in task 2.1c
+        productToClassification = _apiClient.Products.GetProductClassifications(batch.ToList());
+
+        var varintBatches = allVariants.Batch(_batchSize);
+        var totalVariantBatchCount = varintBatches.Count();
+        var processedVariantBatches = 0;
+
+        var mappedVariants = new Dictionary<int, VariantIndexModel>();
+
+        //Map variant data in task 2.1b 
+        foreach (var variantBatch in varintBatches)
+        {
+            var variantAttributeValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel()
+            {
+                VariantIds = variantBatch.Select(x => x.Id).ToList()
+            }).ToDictionary(x => x.VariantId);
+
+            foreach (var variant in variantBatch)
+            {
+                mappedVariants.Add(variant.Id, Mapper.Map(language, variant, variantAttributeValues[variant.Id].Values));
+            }
+
+            Console.WriteLine($"Done processing variant batch {++processedVariantBatches}/{totalVariantBatchCount}");
+        }
+
+        //Map product data in task 2.1a
+        foreach (var productModel in productAttributeValues)
+        {
+            var productVariants = new List<VariantIndexModel>();
+
+            //get variants belonging to product in task 2.1b
+            var variants = productToVariants[productModel.ProductId];
+
+            foreach (var variantId in variants)
+            {
+                productVariants.Add(mappedVariants[variantId]);
+            }
+
+            var productClassification = new List<int>();
+                    
+            if(productToClassification.TryGetValue(productModel.ProductId, out var classifications))
+            {
+                productClassification = classifications.Select(x => x.CategoryId).ToList();
+            };
+                    
+            indexModels.Add(Mapper.Map(language, productModel.ProductId, productModel.Values, productVariants, productClassification));
+        }
+
+        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+    }
+    return indexModels;
+}

@@ -1,0 +1,4 @@
+﻿Hint 2
+When looping over the bogus data, we need to check if a variant is new or existing.
+If it is existing, do the exact same thing that we did in task 3.1
+When we hit a new variant, we need to find it's matching product from "styleNumber". Look at task 1.3 for a hint on how to do this.

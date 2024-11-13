@@ -1,0 +1,6 @@
+﻿Hint 1
+Fetch the list of product identfiers with alias "StyleNumber".
+	var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber");
+
+
+Use the existing mapper method to map variant data

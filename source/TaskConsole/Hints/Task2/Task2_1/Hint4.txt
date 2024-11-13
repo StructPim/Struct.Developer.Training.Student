@@ -1,0 +1,5 @@
+﻿Hint 4
+
+Use the method "Products.GetProductClassifications" to populate the "ProductToClassification" dictionary.
+
+Within the product loop, select the correct categories. Send the information to the mapper method.

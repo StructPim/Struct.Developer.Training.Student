@@ -1,0 +1,11 @@
+﻿Hint 1
+Look at the previous task (3.3). You should be fetching the global list values in the same way.
+
+//Find the currencies global list
+var currencyGlobalList = _apiClient.GlobalLists.GetGlobalList("Currency");
+
+//Fetch currencies which contains the conversionrates
+var currencies = _apiClient.GlobalLists.GetGlobalListValues<CurrencyGlobalListModel>(currencyGlobalList.Uid);
+
+When looping over each variant, you should check if the variant has a CostPrice.
+If it does, you should loop over each currency from the global list, and calculate the price for each currency.

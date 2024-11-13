@@ -1,0 +1,26 @@
+﻿Hint 2
+When looping over the bogus data, use the mapper from earlier
+Take inspiration from the previous task, when deciding if an item is new or existing.
+
+Remember to set a new Guid on any new global list value
+
+if (globalListValues.TryGetValue(globalListValue.Id, out var globalListValueToUpdate))
+{
+    var globalListValueToUpdateModel = new GlobalListValue<SuppliersGlobalListModel>()
+    {
+        Uid = globalListValueToUpdate.Uid,
+        Value = Mapper.Map(globalListValue)
+    };
+
+    globalListValuesToUpdate.Add(globalListValueToUpdateModel);
+}
+else
+{
+    var globalListValueToCreateModel = new GlobalListValue<SuppliersGlobalListModel>()
+    {
+        Uid = Guid.NewGuid(),
+        Value = Mapper.Map(globalListValue)
+    };
+
+    globalListValuesToCreate.Add(globalListValueToCreateModel);
+}

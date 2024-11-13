@@ -1,0 +1,4 @@
+﻿Hint 1
+
+You should use the "GetInternalIdMap" method to get the map between SKU and Internal ID
+var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");

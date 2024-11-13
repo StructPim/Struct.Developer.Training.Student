@@ -1,0 +1,13 @@
+﻿Hint 1
+First you need to find the global list itself, since we need it's Uid for looking up the values.
+You can do this by using the "GetGlobalList" method.
+
+
+//Get existing global list
+var globalList = _apiClient.GlobalLists.GetGlobalList("Suppliers");
+
+
+Now we have the Uid, we need to fetch the values of the list. Use the strongly typed method "GetGlobalListValues" to get the values of the global list.
+//Get existing global list values
+var globalListValues = _apiClient.GlobalLists.GetGlobalListValues<SuppliersGlobalListModel>(globalList.Uid).GlobalListValues.ToDictionary(glv => glv.Value.SupplierId);
+

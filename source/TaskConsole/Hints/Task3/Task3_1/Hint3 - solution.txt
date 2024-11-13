@@ -1,0 +1,36 @@
+﻿Your solution should look something like this:
+public void DeltaUpdateExistingVariants()
+{
+    //Get bogus data and map it to PIM data model
+    var variantBogusData = _importService.ReadExistingVariantDeltaBogusData();
+
+    //Get existing variant identifiers to determine the variants to update
+    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
+
+    //Loop over bogus variants and map them to a update model
+    var variantsToUpdate = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
+    foreach (var variant in variantBogusData)
+    {
+        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
+        {
+            var variantToUpdateModel = new UpdateVariantModel<ClothingVariantModel>();
+            variantToUpdateModel.Values = Mapper.Map(variant);
+            variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
+        }
+        else
+        {
+            Console.WriteLine($"Could not update variant as it is missing, variant sku: {variant.Sku}");
+        }
+    }
+
+    var batches = variantsToUpdate.Batch(_writeBatchSize);
+    var totalBatchesCount = batches.Count();
+    var processed = 0;
+
+    foreach (var batch in batches)
+    {
+        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+        var batchDict = batch.ToDictionary(x => x.Key, x => x.Value);
+        _apiClient.Variants.UpdateVariants<ClothingVariantModel>(batchDict);
+    }
+}
