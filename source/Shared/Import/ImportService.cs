@@ -14,7 +14,7 @@ namespace Shared.Import
         /// <exception cref="IOException"></exception>
         public List<CategoryBogusModel> ReadCategoryBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task1Data\\CategoryBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task1Data/CategoryBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;
@@ -32,7 +32,7 @@ namespace Shared.Import
 
         public IEnumerable<VariantBogusModel> ReadExistingVariantDeltaBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task3Data\\ExistingVariantBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task3Data/ExistingVariantBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;
@@ -50,7 +50,7 @@ namespace Shared.Import
         
         public IEnumerable<VariantBogusModel> ReadExistingAndNewVariantDeltaBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task3Data\\ExistingAndNewVariantBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task3Data/ExistingAndNewVariantBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;
@@ -68,7 +68,7 @@ namespace Shared.Import
 
         public IEnumerable<GlobalListBogusModel> ReadGlobalListBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task3Data\\GlobalListBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task3Data/GlobalListBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;
@@ -91,7 +91,7 @@ namespace Shared.Import
         /// <exception cref="IOException"></exception>
         public List<ProductBogusModel> ReadProductBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task1Data\\ProductBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task1Data/ProductBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;
@@ -114,7 +114,7 @@ namespace Shared.Import
         /// <exception cref="IOException"></exception>
         public List<VariantBogusModel> ReadVariantBogusData()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import\\Task1Data\\VariantBogusData.json";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "Import/Task1Data/VariantBogusData.json";
 
             var file = new FileInfo(filePath);
             string result;

@@ -15,7 +15,7 @@ namespace Shared.Index
         private readonly string _basePath;
         public IndexService()
         {
-            _basePath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\Website\\Data";
+            _basePath = AppDomain.CurrentDomain.BaseDirectory + "../../../../Website/Data";
         }
 
         public void CreateIndex<T>(List<T> documents, IndexType indexType, LanguageModel language) where T : IndexModel
@@ -29,14 +29,14 @@ namespace Shared.Index
             //add the documents
             index.Documents = documents;
 
-            var slavePath = $"{_basePath}\\{indexType}_{index.Language}_slave.json";
+            var slavePath = $"{_basePath}/{indexType}_{index.Language}_slave.json";
             //create slaveindex file on disc
             File.WriteAllText(slavePath, JsonConvert.SerializeObject(index));
 
             //delete current master index file and and rename our slave file to take its place
-            File.Delete($"{_basePath}\\{indexType}_{index.Language}.json");
+            File.Delete($"{_basePath}/{indexType}_{index.Language}.json");
 
-            File.Move($"{_basePath}\\{indexType}_{index.Language}_slave.json", $"{_basePath}\\{indexType}_{index.Language}.json");
+            File.Move($"{_basePath}/{indexType}_{index.Language}_slave.json", $"{_basePath}/{indexType}_{index.Language}.json");
 
         }
 
@@ -61,7 +61,7 @@ namespace Shared.Index
             }
 
             //save the updated index
-            File.WriteAllText($"{_basePath}\\{indexType}_{cultureCode}.json", JsonConvert.SerializeObject(index));
+            File.WriteAllText($"{_basePath}/{indexType}_{cultureCode}.json", JsonConvert.SerializeObject(index));
         }
 
 
@@ -106,7 +106,7 @@ namespace Shared.Index
 
         private Models.Index<T>? GetFullIndex<T>(IndexType indexType, string cultureCode) where T : IndexModel
         {
-            var filePath = $"{_basePath}\\{indexType}_{cultureCode}.json";
+            var filePath = $"{_basePath}/{indexType}_{cultureCode}.json";
             var jsonContent = File.ReadAllText(filePath);
             return JsonConvert.DeserializeObject<Models.Index<T>>(jsonContent);
         }
