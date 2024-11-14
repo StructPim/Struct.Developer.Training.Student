@@ -59,40 +59,12 @@ namespace Shared.Import.Helpers
                 },
 
                 //Map Description as List<LocalizedData<string>> with cultre codes da-DK and en-GB
-                Description = new List<LocalizedData<string>>
-                {
-                    new LocalizedData<string>
-                    {
-                        CultureCode = "da-DK",
-                        Data = bogusModel.Description
-                    },
-                    new LocalizedData<string>
-                    {
-                        CultureCode = "en-GB",
-                        Data = bogusModel.Description
-                    }
-                },
 
                 //Map Name as List<LocalizedData<string>> with cultre codes da-DK and en-GB
-                Name = new List<LocalizedData<string>>
-                {
-                    new LocalizedData<string>
-                    {
-                        CultureCode = "da-DK",
-                        Data = bogusModel.NameDa
-                    },
-                    new LocalizedData<string>
-                    {
-                        CultureCode = "en-GB",
-                        Data = bogusModel.NameEng
-                    }
-                },
 
                 //Style number is identifier for the product
-                StyleNumber = bogusModel.StyleNo,
 
                 //ERPType is used to map the product to a category
-                ERPType = bogusModel.ErpType,
             };
         }
 
@@ -100,52 +72,19 @@ namespace Shared.Import.Helpers
         {
             return new ClothingVariantModel
             {
-
                 //Map Material as MaterialGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
-                Material = new MaterialGlobalListModel() { 
-                    Name = new List<LocalizedData<string>>
-                    {
-                        new LocalizedData<string>
-                        {
-                            CultureCode = "da-DK",
-                            Data = bogusModel.Material
-                        }
-                    }
-                },
 
                 //Map BaseCostPrice
-                BaseCostPrice = bogusModel.BaseCostPrice,
 
                 //Map Color as ColorsGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
-                Color = new ColorsGlobalListModel()
-                {
-                    Name = new List<LocalizedData<string>>
-                    {
-                        new LocalizedData<string>
-                        {
-                            CultureCode = "da-DK",
-                            Data = bogusModel.Color
-                        }
-                    },
-                    
-                },
 
                 //Map PackageSize as PackageSizeModel
-                PackageSize = new PackageSizeModel()
-                {
-                    Height = bogusModel.PackageSize.Height,
-                    Length = bogusModel.PackageSize.Length,
-                    Width = bogusModel.PackageSize.Width
-                },
 
                 //Map Sku
-                SKU = bogusModel.Sku,
 
                 //Map Weight
-                Weight = bogusModel.Weight,
 
                 //Map Size
-                Size = bogusModel.Size,
             };
         }
 
