@@ -54,7 +54,7 @@ namespace TaskConsole.Tasks
         public void ConsumeDeltaUpdates()
         {
             //fetch updates from servicebus
-            var updates = new List<int?>();
+            var updates = new List<int>();
 
             if (!updates.Any())
             {
@@ -106,7 +106,7 @@ namespace TaskConsole.Tasks
                     Console.WriteLine($"Done processing variant batch {++processedVariantBatches}/{totalVariantBatchCount}");
                 }
 
-                //Map product data in task
+                //Map product data in task 2.1a
                 foreach (var productModel in productAttributeValues)
                 {
                     var productVariants = new List<VariantIndexModel>();
