@@ -7,7 +7,7 @@ public void DeltaUpdateExistingVariants()
     //Get existing variant identifiers to determine the variants to update
     var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
 
-    //Loop over bogus variants and map them to a update model
+    //Loop over bogus variants and map them to an update model
     var variantsToUpdate = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
     foreach (var variant in variantBogusData)
     {
