@@ -68,7 +68,27 @@ namespace Shared.Import.Helpers
             };
         }
 
-        public static ClothingVariantModel Map(VariantBogusModel bogusModel)
+        public static VariantDeltaERPUpdateModel Map(VariantBogusModel bogusModel)
+        {
+            return new VariantDeltaERPUpdateModel
+            {
+                //Map Material as MaterialGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+
+                //Map BaseCostPrice
+
+                //Map Color as ColorsGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+
+                //Map PackageSize as PackageSizeModel
+
+                //Map Sku
+
+                //Map Weight
+
+                //Map Size
+            };
+        }
+
+        public static ClothingVariantModel MapNewVariant(VariantBogusModel bogusModel)
         {
             return new ClothingVariantModel
             {

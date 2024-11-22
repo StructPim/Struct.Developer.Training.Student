@@ -6,13 +6,12 @@ Remember to set a new Guid on any new global list value
 
 if (globalListValues.TryGetValue(globalListValue.Id, out var globalListValueToUpdate))
 {
-    var globalListValueToUpdateModel = new GlobalListValue<SuppliersGlobalListModel>()
-    {
-        Uid = globalListValueToUpdate.Uid,
-        Value = Mapper.Map(globalListValue)
-    };
+    globalListValueToUpdate.Value.SupplierId = globalListValue.Id;
+    globalListValueToUpdate.Value.Name = globalListValue.Name;
+    globalListValueToUpdate.Value.Phone = globalListValue.Phone;
+    globalListValueToUpdate.Value.Email = globalListValue.Email;
 
-    globalListValuesToUpdate.Add(globalListValueToUpdateModel);
+    globalListValuesToUpdate.Add(globalListValueToUpdate);
 }
 else
 {

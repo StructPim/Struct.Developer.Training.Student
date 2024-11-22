@@ -1,6 +1,4 @@
-﻿Hint 3
-Your solution should look something like this:
-public void UpdateCostPrices()
+﻿public void UpdateCostPrices()
 {
     //Fetch all variantIds from PIM
     var variantIds = _apiClient.Variants.GetVariantIds();
@@ -36,7 +34,7 @@ public void UpdateCostPrices()
                 variant.Values.CostPrices.Add(new CostPricesModel
                 {
                     Currency = currency.Value,
-                    Price = variant.Values.BaseCostPrice.Value * currency.Value.ConversionFactor
+                    Price = variant.Values.BaseCostPrice.Value / currency.Value.ConversionFactor
                 });
             }
 

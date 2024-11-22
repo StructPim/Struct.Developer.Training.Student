@@ -17,13 +17,13 @@ namespace Shared.Index.Helpers
             return new ProductIndexModel
             {
                 Id = productId,
-                Name = product.Name.FirstOrDefault(x=>x.CultureCode == language.CultureCode)?.Data ?? string.Empty,
-                StyleNumber = product.StyleNumber,                
-                Description = product.Description.FirstOrDefault(x => x.CultureCode == language.CultureCode)?.Data ?? string.Empty,
-                Brand = product.Brand,
-                Categories = productClassification,
-                Variants = productVariants,
-                ImageUrl = product.PrimaryImage ?? $"placeholder_{new Random().Next(1, 8)}.webp"
+                ImageUrl = product.PrimaryImage ?? $"placeholder_{new Random().Next(1, 8)}.webp",
+                //Name
+                //StyleNumber
+                //Description
+                //Brand
+                //Categories
+                //Variants
             };
         }
 

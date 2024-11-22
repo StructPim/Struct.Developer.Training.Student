@@ -1,6 +1,5 @@
 ﻿Hint 5
 
-
 private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
 {
     var batches = productIds.Batch(_batchSize);
@@ -19,36 +18,11 @@ private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageMo
 
         //fetch variants for products in task 2.1b
         var productToVariants = _apiClient.Products.GetVariantIds(batch.ToList());
+        var variantIds = productToVariants.SelectMany(x => x.Value).ToList();
+        var mappedVariants = GetIndexVariants(variantIds, language);
 
-        //fetch variant attribute values and fetch values in batches in task 2.1b
-        var allVariants = _apiClient.Variants.GetVariants(productToVariants.SelectMany(x => x.Value).ToList());
-
-
-        var productToClassification = new Dictionary<int, List<ProductClassificationModel>>();
         //fetch classification for products into productToClassification in task 2.1c
-        productToClassification = _apiClient.Products.GetProductClassifications(batch.ToList());
-
-        var varintBatches = allVariants.Batch(_batchSize);
-        var totalVariantBatchCount = varintBatches.Count();
-        var processedVariantBatches = 0;
-
-        var mappedVariants = new Dictionary<int, VariantIndexModel>();
-
-        //Map variant data in task 2.1b 
-        foreach (var variantBatch in varintBatches)
-        {
-            var variantAttributeValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel()
-            {
-                VariantIds = variantBatch.Select(x => x.Id).ToList()
-            }).ToDictionary(x => x.VariantId);
-
-            foreach (var variant in variantBatch)
-            {
-                mappedVariants.Add(variant.Id, Mapper.Map(language, variant, variantAttributeValues[variant.Id].Values));
-            }
-
-            Console.WriteLine($"Done processing variant batch {++processedVariantBatches}/{totalVariantBatchCount}");
-        }
+        var productToClassification = GetProductClassification(batch.ToList());
 
         //Map product data in task 2.1a
         foreach (var productModel in productAttributeValues)
@@ -64,16 +38,48 @@ private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageMo
             }
 
             var productClassification = new List<int>();
-                    
-            if(productToClassification.TryGetValue(productModel.ProductId, out var classifications))
+
+            if (productToClassification.TryGetValue(productModel.ProductId, out var classifications))
             {
                 productClassification = classifications.Select(x => x.CategoryId).ToList();
             };
-                    
+
             indexModels.Add(Mapper.Map(language, productModel.ProductId, productModel.Values, productVariants, productClassification));
         }
 
-        Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+        Console.WriteLine($"Done processing product batch {++processed}/{totalBatchesCount}");
     }
     return indexModels;
+}
+
+private Dictionary<int, List<ProductClassificationModel>> GetProductClassification(List<int> productIds)
+{
+    var productToClassification = _apiClient.Products.GetProductClassifications(productIds);
+    return productToClassification;
+
+}
+
+private Dictionary<int, VariantIndexModel> GetIndexVariants(List<int> variantIds, LanguageModel language)
+{
+    var batches = variantIds.Batch(_batchSize);
+    var totalBatchCount = batches.Count();
+    var processedBatches = 0;
+    var mappedVariants = new Dictionary<int, VariantIndexModel>();
+    foreach (var batch in batches)
+    {
+        //fetch variant attribute values and fetch values in batches in task 2.1b
+        var variantAttributeValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel()
+        {
+            VariantIds = variantIds
+        }).ToDictionary(x => x.VariantId);
+
+        var variants = _apiClient.Variants.GetVariants(variantIds);
+        foreach (var variant in variants)
+        {
+            //Map variant data in task 2.1b
+            mappedVariants.Add(variant.Id, Mapper.Map(language, variant, variantAttributeValues[variant.Id].Values));
+        }
+        Console.WriteLine($"Done processing variant batch {++processedBatches}/{totalBatchCount}");
+    }
+    return mappedVariants;
 }

@@ -29,6 +29,5 @@ app.MapControllerRoute(
     pattern: "{controller=Product}/{action=ListProducts}/{id?}");
 
 app.MapRazorPages();
-app.UseStaticFiles();
 
 app.Run();

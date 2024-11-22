@@ -2,6 +2,7 @@
 using Shared.Helpers;
 using Shared.Import;
 using Shared.Import.Helpers;
+using Shared.Models;
 using Struct.PIM.Api.Client;
 using Struct.PIM.Api.Models.GlobalList;
 using Struct.PIM.Api.Models.Variant;
@@ -39,10 +40,11 @@ namespace TaskConsole.Tasks
             var variantBogusData = _importService.ReadExistingVariantDeltaBogusData();
 
             //Get existing variant identifiers to determine the variants to update
-            
+
 
             //Loop over bogus variants and map them to a update model
-           
+            var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
+
         }
 
         /// <summary>
@@ -55,14 +57,15 @@ namespace TaskConsole.Tasks
             var variantBogusData = _importService.ReadExistingAndNewVariantDeltaBogusData();
 
             //Get existing product identifiers to determine what product each variant should be created under
-            
+
 
             //Get existing variant identifiers to determine if a variant should be updated or created
-            
+
 
             //Loop over bogus variants and map them to a create or update model                     
+            var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
+            var variantsToCreate = new List<CreateVariantModel<ClothingVariantModel>>();
 
-           
         }
 
         internal void DeltaUpdateGlobalListValues()

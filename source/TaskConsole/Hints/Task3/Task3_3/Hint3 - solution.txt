@@ -3,60 +3,59 @@ Your solution should look something like this:
 internal void DeltaUpdateGlobalListValues()
 {
     //Get bogus data and map it to PIM global list model
-    var globalListBogusData = _importService.ReadGlobalListBogusData();
+            var globalListBogusData = _importService.ReadGlobalListBogusData();
 
-    //Get existing global list
-    var globalList = _apiClient.GlobalLists.GetGlobalList("Suppliers");
+            //Get existing global list
+            var globalList = _apiClient.GlobalLists.GetGlobalList("Suppliers");
 
-    //Get existing global list values
-    var globalListValues = _apiClient.GlobalLists.GetGlobalListValues<SuppliersGlobalListModel>(globalList.Uid).GlobalListValues.ToDictionary(glv => glv.Value.SupplierId);
+            //Get existing global list values
+            var globalListValues = _apiClient.GlobalLists.GetGlobalListValues<SuppliersGlobalListModel>(globalList.Uid).GlobalListValues.ToDictionary(glv => glv.Value.SupplierId);
 
 
-    //Loop over bogus global list data and map them to a create or update lists
-    var globalListValuesToUpdate = new List<GlobalListValue<SuppliersGlobalListModel>>();
-    var globalListValuesToCreate = new List<GlobalListValue<SuppliersGlobalListModel>>();
-    foreach (var globalListValue in globalListBogusData)
-    {
-        if (globalListValues.TryGetValue(globalListValue.Id, out var globalListValueToUpdate))
-        {
-            var globalListValueToUpdateModel = new GlobalListValue<SuppliersGlobalListModel>()
+            //Loop over bogus global list data and map them to a create or update lists
+            var globalListValuesToUpdate = new List<GlobalListValue<SuppliersGlobalListModel>>();
+            var globalListValuesToCreate = new List<GlobalListValue<SuppliersGlobalListModel>>();
+            foreach (var globalListValue in globalListBogusData)
             {
-                Uid = globalListValueToUpdate.Uid,
-                Value = Mapper.Map(globalListValue)
-            };
+                if (globalListValues.TryGetValue(globalListValue.Id, out var globalListValueToUpdate))
+                {
+                    globalListValueToUpdate.Value.SupplierId = globalListValue.Id;
+                    globalListValueToUpdate.Value.Name = globalListValue.Name;
+                    globalListValueToUpdate.Value.Phone = globalListValue.Phone;
+                    globalListValueToUpdate.Value.Email = globalListValue.Email;
 
-            globalListValuesToUpdate.Add(globalListValueToUpdateModel);
-        }
-        else
-        {
-            var globalListValueToCreateModel = new GlobalListValue<SuppliersGlobalListModel>()
+                    globalListValuesToUpdate.Add(globalListValueToUpdate);
+                }
+                else
+                {
+                    var globalListValueToCreateModel = new GlobalListValue<SuppliersGlobalListModel>()
+                    {
+                        Uid = Guid.NewGuid(),
+                        Value = Mapper.Map(globalListValue)
+                    };
+
+                    globalListValuesToCreate.Add(globalListValueToCreateModel);
+                }
+            }
+
+            var createBatches = globalListValuesToCreate.Batch(_writeBatchSize);
+            var totalCreateBatchesCount = createBatches.Count();
+            var createProcessed = 0;
+
+            foreach (var batch in createBatches)
             {
-                Uid = Guid.NewGuid(),
-                Value = Mapper.Map(globalListValue)
-            };
-
-            globalListValuesToCreate.Add(globalListValueToCreateModel);
-        }
-    }
-
-    var createBatches = globalListValuesToCreate.Batch(_writeBatchSize);
-    var totalCreateBatchesCount = createBatches.Count();
-    var createProcessed = 0;
-
-    foreach (var batch in createBatches)
-    {
-        Console.WriteLine($"Done processing create batch {++createProcessed}/{totalCreateBatchesCount}");
-        _apiClient.GlobalLists.CreateGlobalListValues<SuppliersGlobalListModel>(globalList.Uid, batch.ToList());
-    }
+                Console.WriteLine($"Done processing create batch {++createProcessed}/{totalCreateBatchesCount}");
+                _apiClient.GlobalLists.CreateGlobalListValues<SuppliersGlobalListModel>(globalList.Uid, batch.ToList());
+            }
 
 
-    var updateBatches = globalListValuesToUpdate.Batch(_writeBatchSize);
-    var totalUpdateBatchesCount = updateBatches.Count();
-    var updateProcessed = 0;
+            var updateBatches = globalListValuesToUpdate.Batch(_writeBatchSize);
+            var totalUpdateBatchesCount = updateBatches.Count();
+            var updateProcessed = 0;
 
-    foreach (var batch in updateBatches)
-    {
-        Console.WriteLine($"Done processing update batch {++updateProcessed}/{totalUpdateBatchesCount}");
-        _apiClient.GlobalLists.UpdateGlobalListValues<SuppliersGlobalListModel>(globalList.Uid, batch.ToList());
-    }
+            foreach (var batch in updateBatches)
+            {
+                Console.WriteLine($"Done processing update batch {++updateProcessed}/{totalUpdateBatchesCount}");
+                _apiClient.GlobalLists.UpdateGlobalListValues<SuppliersGlobalListModel>(globalList.Uid, batch.ToList());
+            }
 }

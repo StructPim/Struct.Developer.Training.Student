@@ -24,7 +24,7 @@ namespace TaskConsole.Tasks
             _indexService = indexService;
 
             var bootstrapOptions = ConfigHelper.GetConfigValue();
-            
+
             _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
 
             _messageClient = new MessageClient(bootstrapOptions.MessageQueueName, bootstrapOptions.MessageQueueConnectionString, bootstrapOptions.BlobContainerConnectionString);
@@ -35,7 +35,7 @@ namespace TaskConsole.Tasks
         /// </summary>
         /// <returns></returns>
         public void FullExportProductData()
-        {            
+        {
             var language = _apiClient.Languages.GetLanguages().First(x => x.CultureCode == "en-GB");
 
             var productIds = new List<int>();
@@ -70,13 +70,13 @@ namespace TaskConsole.Tasks
 
         }
 
-        private List<ProductIndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
+        private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
         {
             var batches = productIds.Batch(_batchSize);
             var totalBatchesCount = batches.Count();
             var processed = 0;
 
-            var indexModels = new List<ProductIndexModel>();
+            var indexModels = new List<IndexModel>();
 
             foreach (var batch in batches)
             {
@@ -84,27 +84,11 @@ namespace TaskConsole.Tasks
                 var productAttributeValues = new List<ProductAttributeValuesModel<ClothingProductModel>>();
 
                 //fetch variants for products in task 2.1b
-                var productToVariants = new Dictionary<int, List<int>>();
-
-                //fetch variant attribute values and fetch values in batches in task 2.1b
-                var allVariants = new List<VariantModel>();
+                var variantIds = new List<int>();
+                var mappedVariants = GetIndexVariants(variantIds, language);
 
                 //fetch classification for products into productToClassification in task 2.1c
-                var productToClassification = new Dictionary<int, List<ProductClassificationModel>>();
-
-                var varintBatches = allVariants.Batch(_batchSize);
-                var totalVariantBatchCount = varintBatches.Count();
-                var processedVariantBatches = 0;
-
-                var mappedVariants = new Dictionary<int, VariantIndexModel>();
-
-                //Map variant data in task 2.1b 
-                foreach (var variantBatch in varintBatches)
-                {
-
-
-                    Console.WriteLine($"Done processing variant batch {++processedVariantBatches}/{totalVariantBatchCount}");
-                }
+                var productToClassification = GetProductClassification(batch.ToList());
 
                 //Map product data in task 2.1a
                 foreach (var productModel in productAttributeValues)
@@ -113,16 +97,42 @@ namespace TaskConsole.Tasks
 
                     //get variants belonging to product in task 2.1b
 
-
                     var productClassification = new List<int>();
-                    //get classification for product in task 2.1c
 
+                    //Find classifications to current product 2.1c
+
+                    //Ensure all variables has data for mapper to function
                     indexModels.Add(Mapper.Map(language, productModel.ProductId, productModel.Values, productVariants, productClassification));
                 }
 
-                Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
+                Console.WriteLine($"Done processing product batch {++processed}/{totalBatchesCount}");
             }
             return indexModels;
+        }
+
+        private Dictionary<int, List<ProductClassificationModel>> GetProductClassification(List<int> productIds)
+        {
+            //Retrieve product classifications from API
+            var productToClassification = new Dictionary<int, List<ProductClassificationModel>>();
+            return productToClassification;
+
+        }
+
+        private Dictionary<int, VariantIndexModel> GetIndexVariants(List<int> variantIds, LanguageModel language)
+        {
+            var batches = variantIds.Batch(_batchSize);
+            var totalBatchCount = batches.Count();
+            var processedBatches = 0;
+            var mappedVariants = new Dictionary<int, VariantIndexModel>();
+            foreach (var batch in batches)
+            {
+                //fetch variant attribute values and fetch values in batches in task 2.1b
+
+                //Map variant data in task 2.1b
+
+                Console.WriteLine($"Done processing variant batch {++processedBatches}/{totalBatchCount}");
+            }
+            return mappedVariants;
         }
     }
 }
