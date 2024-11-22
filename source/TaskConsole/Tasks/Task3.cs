@@ -42,7 +42,7 @@ namespace TaskConsole.Tasks
             //Get existing variant identifiers to determine the variants to update
 
 
-            //Loop over bogus variants and map them to a update model
+            //Loop over bogus variants and map them to an update model
             var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
 
         }
