@@ -8,13 +8,13 @@ public void DeltaUpdateExistingVariants()
     var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
 
     //Loop over bogus variants and map them to an update model
-    var variantsToUpdate = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
+    var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
     foreach (var variant in variantBogusData)
     {
         if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
         {
-            var variantToUpdateModel = new UpdateVariantModel<ClothingVariantModel>();
-            variantToUpdateModel.Values = Mapper.MapNewVariant(variant);
+            var variantToUpdateModel = new UpdateVariantModel<VariantDeltaERPUpdateModel>();
+            variantToUpdateModel.Values = Mapper.Map(variant);
             variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
         }
         else
@@ -31,6 +31,6 @@ public void DeltaUpdateExistingVariants()
     {
         Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
         var batchDict = batch.ToDictionary(x => x.Key, x => x.Value);
-        _apiClient.Variants.UpdateVariants<ClothingVariantModel>(batchDict);
+        _apiClient.Variants.UpdateVariants<VariantDeltaERPUpdateModel>(batchDict);
     }
 }
