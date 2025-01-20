@@ -1,4 +1,17 @@
 ﻿Hint 5
+public void FullExportProductData()
+{
+    var language = _apiClient.Languages.GetLanguages().First(x => x.CultureCode == "en-GB");
+
+    var productIds = new List<int>();
+
+    //Start by fetching the products from PIM
+    productIds = _apiClient.Products.GetProductIds();
+
+    var indexModels = FetchAndMapProductData(productIds, language);
+
+    _indexService.CreateIndex(indexModels, IndexType.ProductIndex, language);
+}
 
 private List<ProductIndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
 {

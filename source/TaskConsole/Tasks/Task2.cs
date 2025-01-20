@@ -40,11 +40,11 @@ namespace TaskConsole.Tasks
 
             var productIds = new List<int>();
 
-            //Start by fetching the products from PIM           
+            //Start by fetching the products from PIM
 
             var indexModels = FetchAndMapProductData(productIds, language);
 
-            //create index using the index service
+            _indexService.CreateIndex(indexModels, IndexType.ProductIndex, language);
         }
 
         /// <summary>
