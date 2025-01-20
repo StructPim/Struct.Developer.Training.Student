@@ -34,3 +34,57 @@ public void DeltaUpdateExistingVariants()
         _apiClient.Variants.UpdateVariants<VariantDeltaERPUpdateModel>(batchDict);
     }
 }
+
+//Mapper hint
+public static VariantDeltaERPUpdateModel Map(VariantBogusModel bogusModel)
+{
+    return new VariantDeltaERPUpdateModel
+    {
+
+        //Map Material as MaterialGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+        Material = new MaterialGlobalListModel() { 
+            Name = new List<LocalizedData<string>>
+            {
+                new LocalizedData<string>
+                {
+                    CultureCode = "da-DK",
+                    Data = bogusModel.Material
+                }
+            }
+        },
+
+        //Map BaseCostPrice
+        BaseCostPrice = bogusModel.BaseCostPrice,
+
+        //Map Color as ColorsGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
+        Color = new ColorsGlobalListModel()
+        {
+            Name = new List<LocalizedData<string>>
+            {
+                new LocalizedData<string>
+                {
+                    CultureCode = "da-DK",
+                    Data = bogusModel.Color
+                }
+            },
+                    
+        },
+
+        //Map PackageSize as PackageSizeModel
+        PackageSize = new PackageSizeModel()
+        {
+            Height = bogusModel.PackageSize.Height,
+            Length = bogusModel.PackageSize.Length,
+            Width = bogusModel.PackageSize.Width
+        },
+
+        //Map Sku
+        SKU = bogusModel.Sku,
+
+        //Map Weight
+        Weight = bogusModel.Weight,
+
+        //Map Size
+        Size = bogusModel.Size,
+    };
+}
