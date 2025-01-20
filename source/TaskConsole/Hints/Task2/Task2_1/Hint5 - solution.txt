@@ -83,10 +83,10 @@ private Dictionary<int, VariantIndexModel> GetIndexVariants(List<int> variantIds
         //fetch variant attribute values and fetch values in batches in task 2.1b
         var variantAttributeValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel()
         {
-            VariantIds = variantIds
+            VariantIds = batch.ToList()
         }).ToDictionary(x => x.VariantId);
 
-        var variants = _apiClient.Variants.GetVariants(variantIds);
+        var variants = _apiClient.Variants.GetVariants(batch.ToList());
         foreach (var variant in variants)
         {
             //Map variant data in task 2.1b

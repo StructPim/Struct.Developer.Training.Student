@@ -14,7 +14,7 @@ public void DeltaUpdateExistingVariants()
         if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
         {
             var variantToUpdateModel = new UpdateVariantModel<ClothingVariantModel>();
-            variantToUpdateModel.Values = Mapper.Map(variant);
+            variantToUpdateModel.Values = Mapper.MapNewVariant(variant);
             variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
         }
         else
