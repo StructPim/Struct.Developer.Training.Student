@@ -70,13 +70,13 @@ namespace TaskConsole.Tasks
 
         }
 
-        private List<IndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
+        private List<ProductIndexModel> FetchAndMapProductData(List<int> productIds, LanguageModel language)
         {
             var batches = productIds.Batch(_batchSize);
             var totalBatchesCount = batches.Count();
             var processed = 0;
 
-            var indexModels = new List<IndexModel>();
+            var indexModels = new List<ProductIndexModel>();
 
             foreach (var batch in batches)
             {
