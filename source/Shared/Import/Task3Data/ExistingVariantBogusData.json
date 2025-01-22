@@ -1,32 +1,12 @@
 ﻿[
   {
     "sku": "S0000-000",
-    "color": "Red",
-    "definition": "shoe",
-    "material": "Wool",
-    "size": 43,
-    "packageSize": {
-      "height": 14.15,
-      "width": 22.34,
-      "length": 13.7
-    },
-    "weight": 1.43,
-    "baseCostPrice": 86.91,
+    "weight": 1.99,
     "styleNo": "S0000"
   },
   {
     "sku": "S0000-001",
-    "color": "Yellow",
-    "definition": "shoe",
-    "material": "Wool",
-    "size": 45,
-    "packageSize": {
-      "height": 19.47,
-      "width": 23.97,
-      "length": 28.02
-    },
-    "weight": 0.47,
-    "baseCostPrice": 77.98,
+    "weight": 0.66,
     "styleNo": "S0000"
   }
 ]

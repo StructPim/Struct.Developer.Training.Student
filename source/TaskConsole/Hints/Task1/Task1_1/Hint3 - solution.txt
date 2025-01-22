@@ -6,6 +6,7 @@ var existingCatalogues = _apiClient.Catalogues.GetCatalogues();
 var masterCatalogue = existingCatalogues.Single(x => x.Alias == "Master");
 
 var categoriesToCreate = new List<CreateCategoryModel<MasterCategoryModel>>();
+//Loop over the bogus categories and map them to a createmodel and map it using the Mapper.Map method.
 
 foreach (var category in categoryBogusData)
 {

@@ -72,19 +72,7 @@ namespace Shared.Import.Helpers
         {
             return new VariantDeltaERPUpdateModel
             {
-                //Map Material as MaterialGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
-
-                //Map BaseCostPrice
-
-                //Map Color as ColorsGlobalListModel and set CultureCode to List<LocalizedData<string>> with culture code da-DK
-
-                //Map PackageSize as PackageSizeModel
-
-                //Map Sku
-
                 //Map Weight
-
-                //Map Size
             };
         }
 

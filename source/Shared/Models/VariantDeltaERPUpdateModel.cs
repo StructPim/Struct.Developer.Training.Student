@@ -9,12 +9,6 @@ namespace Shared.Models
 {
     public class VariantDeltaERPUpdateModel
     {
-        public MaterialGlobalListModel Material { get; set; }
-        public decimal? BaseCostPrice { get; set; }
-        public ColorsGlobalListModel Color { get; set; }
-        public PackageSizeModel PackageSize { get; set; }
-        public string SKU { get; set; }
         public decimal? Weight { get; set; }
-        public string Size { get; set; }
     }
 }

@@ -48,8 +48,8 @@ namespace TaskConsole.Tasks
 
             var categoriesToCreate = new List<CreateCategoryModel<MasterCategoryModel>>();
 
-            //Loop over the bogus categories and map them to a createmodel
-            
+            //Loop over the bogus categories and map them to a createmodel and map it using the Mapper.Map method.
+
 
             var batches = categoriesToCreate.Batch(_writeBatchSize);
             var totalBatchesCount = batches.Count();
