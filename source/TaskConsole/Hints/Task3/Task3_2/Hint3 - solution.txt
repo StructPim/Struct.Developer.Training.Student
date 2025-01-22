@@ -6,28 +6,28 @@ public void DeltaUpdateExistingAndNewVariants()
     var variantBogusData = _importService.ReadExistingAndNewVariantDeltaBogusData();
 
     //Get existing product identifiers to determine what product each variant should be created under
-    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber");
+    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber", variantBogusData.Select(v => v.StyleNo).ToList());
 
     //Get existing variant identifiers to determine if a variant should be updated or created
-    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
+    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU", variantBogusData.Select(v => v.Sku).ToList());
 
     //Loop over bogus variants and map them to a create or update model
     var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
     var variantsToCreate = new List<CreateVariantModel<ClothingVariantModel>>();
     foreach (var variant in variantBogusData)
     {
-        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
+        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate) && variantToUpdate.HasValue)
         {
             var variantToUpdateModel = new UpdateVariantModel<VariantDeltaERPUpdateModel>();
             variantToUpdateModel.Values = Mapper.Map(variant);
-            variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
+            variantsToUpdate.Add(variantToUpdate.Value, variantToUpdateModel);
         }
         else
         {
-            if (productIdentifiers.TryGetValue(variant.StyleNo, out var productId))
+            if (productIdentifiers.TryGetValue(variant.StyleNo, out var productId) && productId.HasValue)
             {
                 var variantToCreate = new CreateVariantModel<ClothingVariantModel>();
-                variantToCreate.ProductId = productId;
+                variantToCreate.ProductId = productId.Value;
                 variantToCreate.Values = Mapper.MapNewVariant(variant);
                 variantsToCreate.Add(variantToCreate);
             }

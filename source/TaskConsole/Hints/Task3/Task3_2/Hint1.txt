@@ -3,7 +3,7 @@ This time you need to be able to match both variants and products.
 Therefore you should fetch identfiers for both entitytypes.
 
 //Get existing product identifiers to determine what product each variant should be created under
-var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber");
+var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber", variantBogusData.Select(v => v.StyleNo).ToList());
 
 //Get existing variant identifiers to determine if a variant should be updated or created
-var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
+var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU", variantBogusData.Select(v => v.Sku).ToList());

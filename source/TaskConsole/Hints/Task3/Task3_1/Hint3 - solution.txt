@@ -5,17 +5,17 @@ public void DeltaUpdateExistingVariants()
     var variantBogusData = _importService.ReadExistingVariantDeltaBogusData();
 
     //Get existing variant identifiers to determine the variants to update
-    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU");
+    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU", variantBogusData.Select(v => v.Sku).ToList());
 
     //Loop over bogus variants and map them to an update model
     var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
     foreach (var variant in variantBogusData)
     {
-        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate))
+        if (variantIdentifiers.TryGetValue(variant.Sku, out var variantToUpdate) && variantToUpdate.HasValue)
         {
             var variantToUpdateModel = new UpdateVariantModel<VariantDeltaERPUpdateModel>();
             variantToUpdateModel.Values = Mapper.Map(variant);
-            variantsToUpdate.Add(variantToUpdate, variantToUpdateModel);
+            variantsToUpdate.Add(variantToUpdate.Value, variantToUpdateModel);
         }
         else
         {
