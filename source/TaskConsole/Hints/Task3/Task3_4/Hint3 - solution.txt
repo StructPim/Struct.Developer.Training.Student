@@ -15,35 +15,40 @@
 
     foreach (var batch in batches)
     {
-        var updateModel = new Dictionary<int, UpdateVariantModel<ClothingVariantModel>>();
+        var updateModel = new Dictionary<int, UpdateVariantModel>();
 
-        var variantValues = _apiClient.Variants.GetVariantAttributeValues<ClothingVariantModel>(new VariantValuesRequestModel
+        var variantValues = _apiClient.Variants.GetVariantAttributeValues(new VariantValuesRequestModel
         {
+            Aliases = new List<string> { "BaseCostPrice" },
+            IncludeValues = Struct.PIM.Api.Models.Shared.ValueIncludeMode.Aliases,
             VariantIds = batch.ToList()
         });
 
         foreach (var variant in variantValues)
         {
             //skip if no base cost price
-            if (!variant.Values.BaseCostPrice.HasValue)
+            if (!variant.Values.TryGetValue("BaseCostPrice", out dynamic? baseCostPrice) || baseCostPrice == null)
                 continue;
 
-            variant.Values.CostPrices = new List<CostPricesModel>();
+            var costPrices = new List<CostPricesModel>();
             foreach (var currency in currencies.GlobalListValues)
             {
-                variant.Values.CostPrices.Add(new CostPricesModel
+                costPrices.Add(new CostPricesModel
                 {
                     Currency = currency.Value,
-                    Price = variant.Values.BaseCostPrice.Value / currency.Value.ConversionFactor
+                    Price = Convert.ToDecimal(baseCostPrice) / currency.Value.ConversionFactor
                 });
             }
-
-            updateModel.Add(variant.VariantId, new UpdateVariantModel<ClothingVariantModel> { Values = variant.Values });
+            var newvariantCostPrices = new Dictionary<string, dynamic>
+            {
+                { "CostPrices", costPrices }
+            };
+            updateModel.Add(variant.VariantId, new UpdateVariantModel { Values = newvariantCostPrices });
         }
 
         Console.WriteLine($"Calculated {updateModel.Count} variants. Updating...");
 
-        _apiClient.Variants.UpdateVariants<ClothingVariantModel>(updateModel);
+        _apiClient.Variants.UpdateVariants(updateModel);
 
         Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
     }
