@@ -6,10 +6,10 @@ public void DeltaUpdateExistingAndNewVariants()
     var variantBogusData = _importService.ReadExistingAndNewVariantDeltaBogusData();
 
     //Get existing product identifiers to determine what product each variant should be created under
-    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber", variantBogusData.Select(v => v.StyleNo).ToList());
+    var productIdentifiers = _apiClient.Products.GetInternalIdMap("StyleNumber", variantBogusData.Select(v => v.StyleNo).Distinct().ToList());
 
     //Get existing variant identifiers to determine if a variant should be updated or created
-    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU", variantBogusData.Select(v => v.Sku).ToList());
+    var variantIdentifiers = _apiClient.Variants.GetInternalIdMap("SKU", variantBogusData.Select(v => v.Sku).Distinct().ToList());
 
     //Loop over bogus variants and map them to a create or update model
     var variantsToUpdate = new Dictionary<int, UpdateVariantModel<VariantDeltaERPUpdateModel>>();
