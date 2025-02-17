@@ -29,7 +29,11 @@ namespace TaskConsole
             Console.WriteLine("3.3: Update existing global list values");
             Console.WriteLine("3.4: Update cost prices");
 
-            Console.WriteLine("e: Exit");
+            Console.WriteLine("\n##Bonus tasks##");
+            Console.WriteLine("4.1: Search enriched products");
+            Console.WriteLine("4.2: Enrich segmented data");
+
+            Console.WriteLine("\ne: Exit");
             var answer = Console.ReadLine();
             switch (answer)
             {
@@ -62,6 +66,12 @@ namespace TaskConsole
                     break;
                 case "3.4":
                     _taskService.DoTask3_4();
+                    break;
+                case "4.1":
+                    _taskService.DoTask4_1();
+                    break;
+                case "4.2":
+                    _taskService.DoTask4_2();
                     break;
                 case "e":
                     break;
