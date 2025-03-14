@@ -1,25 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using Shared.Helpers;
+﻿using Shared.Helpers;
 using Shared.Import;
 using Shared.Import.Helpers;
-using Shared.Models;
-using Struct.PIM.Api.Client;
-using Struct.PIM.Api.Models.Catalogue;
-using Struct.PIM.Api.Models.Product;
-using Struct.PIM.Api.Models.Variant;
+using Struct.App.Api.Client;
+using Struct.App.Api.Models.Catalogue;
+using Struct.App.Api.Models.Product;
 using Struct.PIM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskConsole.Tasks
 {
     internal class Task1
     {
         private readonly ImportService _importService;
-        private readonly StructPIMApiClient _apiClient;
+        private readonly StructApiClient _apiClient;
         private readonly int _writeBatchSize = 500;
         private readonly int _readBatchSize = 500;
 
@@ -29,7 +21,7 @@ namespace TaskConsole.Tasks
 
             var bootstrapOptions = ConfigHelper.GetConfigValue();
 
-            _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
+            _apiClient = new StructApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
         }
 
         /// <summary>
@@ -44,7 +36,7 @@ namespace TaskConsole.Tasks
             //Get existing catalogues
 
             //Select the master catalogue
-            
+
 
             var categoriesToCreate = new List<CreateCategoryModel<MasterCategoryModel>>();
 
@@ -58,7 +50,7 @@ namespace TaskConsole.Tasks
             foreach (var batch in batches)
             {
                 Console.WriteLine($"Done processing batch {++processed}/{totalBatchesCount}");
-                
+
             }
         }
 

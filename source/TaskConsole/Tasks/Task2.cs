@@ -2,20 +2,18 @@
 using Shared.Helpers;
 using Shared.Index;
 using Shared.Index.Models;
-using Struct.PIM.Api.Client;
-using Struct.PIM.Api.Models.Product;
 using Struct.PIM.Models;
 using Shared.Index.Helpers;
-using Struct.PIM.Api.Models.Variant;
-using Struct.PIM.Api.Client.Endpoints;
-using Struct.PIM.Api.Models.Language;
+using Struct.App.Api.Client;
+using Struct.App.Api.Models.Language;
+using Struct.App.Api.Models.Product;
 
 namespace TaskConsole.Tasks
 {
     internal class Task2
     {
         private readonly IndexService _indexService;
-        private readonly StructPIMApiClient _apiClient;
+        private readonly StructApiClient _apiClient;
         private readonly MessageClient _messageClient;
         private readonly int _batchSize = 500;
 
@@ -25,7 +23,7 @@ namespace TaskConsole.Tasks
 
             var bootstrapOptions = ConfigHelper.GetConfigValue();
 
-            _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
+            _apiClient = new StructApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
 
             _messageClient = new MessageClient(bootstrapOptions.MessageQueueName, bootstrapOptions.MessageQueueConnectionString, bootstrapOptions.BlobContainerConnectionString);
         }

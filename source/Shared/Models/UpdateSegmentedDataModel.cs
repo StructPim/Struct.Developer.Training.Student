@@ -1,9 +1,4 @@
-﻿using Struct.PIM.Api.Models.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Struct.App.Api.Models.Shared;
 
 namespace Shared.Models
 {

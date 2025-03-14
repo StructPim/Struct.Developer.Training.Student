@@ -25,7 +25,7 @@
 	//Namespace of models generated
     string namespaceName = "Struct.PIM.Models";
 
-    var apiClient = new Struct.PIM.Api.Client.StructPIMApiClient(pimUrl, apiKey);
+    var apiClient = new Struct.PIM.Api.Client.StructApiClient(pimUrl, apiKey);
     var models = apiClient.Miscellaneous.GetModels();
     var allAttributes = new List<ModelStructure.AttributeModel>();
     allAttributes.AddRange(models.ProductModels.SelectMany(x => x.Properties));

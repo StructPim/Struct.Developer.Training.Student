@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Struct.PIM.Api.Models.Shared;
-using Struct.PIM.Api.Models.Attribute;
+﻿using Struct.App.Api.Models.Shared;
 
 namespace Struct.PIM.Models
 {

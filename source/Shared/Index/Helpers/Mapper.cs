@@ -1,12 +1,7 @@
 ﻿using Shared.Index.Models;
-using Struct.PIM.Api.Models.Language;
-using Struct.PIM.Api.Models.Variant;
+using Struct.App.Api.Models.Language;
+using Struct.App.Api.Models.Variant;
 using Struct.PIM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared.Index.Helpers
 {

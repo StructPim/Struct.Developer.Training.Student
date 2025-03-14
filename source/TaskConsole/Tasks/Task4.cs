@@ -1,23 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Shared.Helpers;
 using Shared.Import;
-using Shared.Models;
-using Struct.PIM.Api.Client;
-using Struct.PIM.Api.Models.DataConfiguration;
-using Struct.PIM.Api.Models.Dimension;
-using Struct.PIM.Api.Models.Shared;
-using Struct.PIM.Api.Models.Variant;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Struct.App.Api.Client;
 
 namespace TaskConsole.Tasks
 {
     internal class Task4
     {
-        private readonly StructPIMApiClient _apiClient;
+        private readonly StructApiClient _apiClient;
 
         public Task4(ImportService importService)
         {
@@ -29,7 +19,7 @@ namespace TaskConsole.Tasks
 
             var bootstrapOptions = ConfigHelper.GetConfigValue();
 
-            _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
+            _apiClient = new StructApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
         }
 
         /// <summary>

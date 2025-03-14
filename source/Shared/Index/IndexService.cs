@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Shared.Index.Models;
-using Struct.PIM.Api.Models.Language;
+using Struct.App.Api.Models.Language;
 
 namespace Shared.Index
 {
