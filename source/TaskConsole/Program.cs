@@ -101,6 +101,7 @@ namespace TaskConsole
                 services.AddSingleton<Task1>();
                 services.AddSingleton<Task2>();
                 services.AddSingleton<Task3>();
+                services.AddSingleton<Task4>();
             });
     }
 }
