@@ -13,17 +13,22 @@ namespace Website.Controllers
             _logger = logger;
         }
 
-        public IActionResult ListProducts()
+        public IActionResult ListProducts(int page = 1, int pageSize = 24)
         {
-            var model = new ProductsListViewModel();
+            var model = new ProductsListViewModel()
+            {
+                CurrentPage = page
+            };
 
             //fetch products from our "index"
             var lookupresult = new Shared.Index.IndexService().GetProducts(new Shared.Index.Models.LookupRequest
             {
                 CultureCode = "en-GB",
-                Page = 1,
-                PageSize = 24
-            });
+                Page = page,
+                PageSize = pageSize
+            }, out int total);
+
+            model.TotalResults = total;
 
             foreach (var item in lookupresult)
             {
