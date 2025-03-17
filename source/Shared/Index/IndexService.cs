@@ -66,8 +66,9 @@ namespace Shared.Index
 
 
         #region lookup for product portal
-        public List<ProductIndexModel> GetProducts(LookupRequest lookupModel)
+        public List<ProductIndexModel> GetProducts(LookupRequest lookupModel, out int total)
         {
+            total = 0;
             //read entire json file into memory
             var index = GetFullIndex<ProductIndexModel>(IndexType.ProductIndex, lookupModel.CultureCode);
 
@@ -86,6 +87,9 @@ namespace Shared.Index
             {
                 documents = documents.Where(x => x.Name.Contains(lookupModel.SearchQuery) || x.Description.Contains(lookupModel.SearchQuery)).ToList();
             }
+
+            //set total
+            total = documents.Count();
 
             //paginate the results
             documents = documents.Take(lookupModel.PageSize).ToList();
