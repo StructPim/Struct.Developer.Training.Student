@@ -1,29 +1,29 @@
 ﻿internal void SearchEnrichedProducts()
+{
+    var queryableFields = _apiClient.Products.GetQueryableFields();
+
+    var completenessField = queryableFields.Single(x => x.Name == "Completeness: Ready for website");
+
+    var searchModel = new SearchModel()
+    {
+        IncludeArchived = false,
+        QueryModel = new SimpleQueryModel()
         {
-            var queryableFields = _apiClient.Products.GetQueryableFields();
-
-            var completenessField = queryableFields.Single(x => x.Name == "Completeness: Ready for website");
-
-            var searchModel = new SearchModel()
+            BooleanOperator = BooleanOperator.And,
+            Filters = new List<FieldFilterModel>
             {
-                IncludeArchived = false,
-                QueryModel = new SimpleQueryModel()
-                {
-                    BooleanOperator = BooleanOperator.And,
-                    Filters = new List<FieldFilterModel>
-                    {
-                        new FieldFilterModel {FieldUid = completenessField.Uid, FilterValue = 100, QueryOperator = QueryOperator.Equals}
-                    }
-                }
-            };
-
-            var fullyEnrichedProducts = _apiClient.Products.Search(searchModel);
-            if (fullyEnrichedProducts.Count < 1)
-            {
-                Console.WriteLine("No fully enriched products was found");
-            }
-            else
-            {
-                Console.WriteLine($"Found {fullyEnrichedProducts.Count} fully enriched products");
+                new FieldFilterModel {FieldUid = completenessField.Uid, FilterValue = 100, QueryOperator = QueryOperator.Equals}
             }
         }
+    };
+
+    var fullyEnrichedProducts = _apiClient.Products.Search(searchModel);
+    if (fullyEnrichedProducts.Count < 1)
+    {
+        Console.WriteLine("No fully enriched products was found");
+    }
+    else
+    {
+        Console.WriteLine($"Found {fullyEnrichedProducts.Count} fully enriched products");
+    }
+}

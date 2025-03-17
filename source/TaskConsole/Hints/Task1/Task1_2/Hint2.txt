@@ -4,8 +4,7 @@ Looping over the product bogus data, you will need to map the product category (
 if (categoryIdentifiers.TryGetValue(product.ErpType, out var categoryId))
 {
     //Using the ERP type value on the product, a category with a matching alias was found
-    productToCreate.PrimaryCategoryId = categoryId;
-    productToCreate.CategoryIds = new List<int> { categoryId };
+    productToCreate.Classifications = new List<SetClassificationModel> { new SetClassificationModel { CategoryId = categoryId, IsPrimary = true} };
 }
 
 You will need to specify the product structure uid. Also set the determined variation definition

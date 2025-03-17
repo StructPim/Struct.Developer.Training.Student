@@ -20,7 +20,7 @@
         var variantValues = _apiClient.Variants.GetVariantAttributeValues(new VariantValuesRequestModel
         {
             Aliases = new List<string> { "BaseCostPrice" },
-            IncludeValues = Struct.PIM.Api.Models.Shared.ValueIncludeMode.Aliases,
+            IncludeValues = Struct.App.Api.Models.Shared.ValueIncludeMode.Aliases,
             VariantIds = batch.ToList()
         });
 

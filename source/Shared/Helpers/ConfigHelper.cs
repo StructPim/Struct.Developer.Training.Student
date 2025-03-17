@@ -21,7 +21,7 @@ namespace Shared.Helpers
 
             return new BootstrapOptions
             {
-                ApiUrl = $"https://api{participantType}{participantNumber}.structstage.com/",
+                ApiUrl = $"https://api{participantType}{participantNumber}.api.structstage.com/",
                 ApiKey = config["StructApiConfig:Key"],
                 MessageQueueName = $"{participantType}{participantNumber}",
                 MessageQueueConnectionString = config["Azure:MessageQueue"],
