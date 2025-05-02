@@ -4,6 +4,7 @@ using Shared.Import.Helpers;
 using Struct.App.Api.Client;
 using Struct.App.Api.Models.Catalogue;
 using Struct.App.Api.Models.Product;
+using Struct.App.Api.Models.Variant;
 using Struct.PIM.Models;
 
 namespace TaskConsole.Tasks

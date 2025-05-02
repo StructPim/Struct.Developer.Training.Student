@@ -7,6 +7,7 @@ using Shared.Index.Helpers;
 using Struct.App.Api.Client;
 using Struct.App.Api.Models.Language;
 using Struct.App.Api.Models.Product;
+using Struct.App.Api.Models.Variant;
 
 namespace TaskConsole.Tasks
 {
