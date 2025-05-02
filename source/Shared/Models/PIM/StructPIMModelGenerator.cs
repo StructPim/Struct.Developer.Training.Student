@@ -1,4 +1,7 @@
-﻿using Struct.App.Api.Models.Shared;
+﻿using System;
+using System.Collections.Generic;
+using Struct.App.Api.Models.Shared;
+using Struct.App.Api.Models.Attribute;
 
 namespace Struct.PIM.Models
 {
@@ -141,6 +144,20 @@ namespace Struct.PIM.Models
     public partial class ClothingVariantModel
 {
    private Dictionary<string, dynamic> _values = new Dictionary<string, dynamic>();
+
+   /// <summary>
+   /// Marketing headline
+   /// </summary>
+   public virtual List<SegmentedData<string>> MarketingHeadline
+   {
+       get { dynamic value; return _values.TryGetValue("MarketingHeadline", out value) ? value : default(List<SegmentedData<string>>); }
+       set { _values["MarketingHeadline"] = value; }
+   }
+
+   public bool ShouldSerializeMarketingHeadline()
+   {
+       return _values.ContainsKey("MarketingHeadline");
+   }
 
    /// <summary>
    /// SKU
