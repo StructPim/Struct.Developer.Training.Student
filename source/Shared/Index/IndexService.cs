@@ -86,6 +86,10 @@ namespace Shared.Index
             total = documents.Count();
 
             //paginate the results
+            if (lookupModel.Page > 1)
+            {
+                documents = documents.Skip((lookupModel.Page - 1) * lookupModel.PageSize).ToList();
+            }
             documents = documents.Take(lookupModel.PageSize).ToList();
             return documents;
         }
