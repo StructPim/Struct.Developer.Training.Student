@@ -7,7 +7,7 @@
     "email": "hugo@boss.dk"
   },
   {
-    "name": "Nike SE",
+    "name": "Nike SE updated",
     "id": 4,
     "phone": "+4522334455",
     "fax": "87654321",
@@ -26,5 +26,13 @@
     "phone": "+4575654214",
     "fax": "45785478",
     "email": "dk@bestseller.dk"
+  },
+  {
+    "name": "New supplier",
+    "id": 102,
+    "phone": "+4512345678",
+    "fax": "32165487",
+    "email": "dk@new.dk"
   }
+
 ]

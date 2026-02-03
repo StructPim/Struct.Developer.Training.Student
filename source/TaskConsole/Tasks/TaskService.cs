@@ -1,12 +1,4 @@
-﻿using Shared;
-using Struct.PIM.Api.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskConsole.Tasks
+﻿namespace TaskConsole.Tasks
 {
     internal class TaskService
     {

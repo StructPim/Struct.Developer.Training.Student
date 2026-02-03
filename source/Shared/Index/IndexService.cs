@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Shared.Index.Models;
-using Struct.PIM.Api.Models.Language;
+using Struct.App.Api.Models.Language;
 
 namespace Shared.Index
 {
@@ -92,6 +86,10 @@ namespace Shared.Index
             total = documents.Count();
 
             //paginate the results
+            if (lookupModel.Page > 1)
+            {
+                documents = documents.Skip((lookupModel.Page - 1) * lookupModel.PageSize).ToList();
+            }
             documents = documents.Take(lookupModel.PageSize).ToList();
             return documents;
         }

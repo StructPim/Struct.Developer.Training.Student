@@ -3,9 +3,9 @@ using Shared.Helpers;
 using Shared.Import;
 using Shared.Import.Helpers;
 using Shared.Models;
-using Struct.PIM.Api.Client;
-using Struct.PIM.Api.Models.GlobalList;
-using Struct.PIM.Api.Models.Variant;
+using Struct.App.Api.Client;
+using Struct.App.Api.Models.GlobalList;
+using Struct.App.Api.Models.Variant;
 using Struct.PIM.Models;
 
 namespace TaskConsole.Tasks
@@ -13,7 +13,7 @@ namespace TaskConsole.Tasks
     internal class Task3
     {
         private readonly ImportService _importService;
-        private readonly StructPIMApiClient _apiClient;
+        private readonly StructApiClient _apiClient;
         private readonly int _writeBatchSize = 500;
 
         public Task3(ImportService importService)
@@ -27,7 +27,7 @@ namespace TaskConsole.Tasks
 
             var bootstrapOptions = ConfigHelper.GetConfigValue();
 
-            _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
+            _apiClient = new StructApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
         }
 
         /// <summary>

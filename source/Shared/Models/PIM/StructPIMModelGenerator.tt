@@ -2,57 +2,57 @@
 <#@ assembly name="NetStandard" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(TargetDir)Newtonsoft.Json.dll" #>
-<#@ assembly name="$(TargetDir)Struct.PIM.Api.Models.dll" #>
-<#@ assembly name="$(TargetDir)Struct.PIM.Api.Client.dll" #>
+<#@ assembly name="$(TargetDir)Struct.App.Api.Models.dll" #>
+<#@ assembly name="$(TargetDir)Struct.App.Api.Client.dll" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="Struct.PIM.Api.Models.ModelGenerator" #>
+<#@ import namespace="Struct.App.Api.Models.ModelGenerator" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#
     //To configure this T4Template, make sure the assemblies above points to
-	//Newtonsoft.Json.dll, Struct.PIM.Api.Models.dkk and Struct.PIM.Api.Client.dll in your workspace
+	//Newtonsoft.Json.dll, Struct.App.Api.Models.dkk and Struct.App.Api.Client.dll in your workspace
 
 	//Set the URL to your struct PIM Api
     string pimUrl = "";
 
-	//Set an API key, which has General -> Model generator access
-    string apiKey = "";
+//Set an API key, which has General -> Model generator access ()
+string apiKey = "";
 
-	//Select if you want to add attributes that are set through the category structure to be added to product and variant models
-    bool addCategoryProperties = true;
+//Select if you want to add attributes that are set through the category structure to be added to product and variant models
+bool addCategoryProperties = false;
 
-	//Namespace of models generated
-    string namespaceName = "Struct.PIM.Models";
+//Namespace of models generated
+string namespaceName = "Struct.PIM.Models";
 
-    var apiClient = new Struct.PIM.Api.Client.StructPIMApiClient(pimUrl, apiKey);
-    var models = apiClient.Miscellaneous.GetModels();
-    var allAttributes = new List<ModelStructure.AttributeModel>();
-    allAttributes.AddRange(models.ProductModels.SelectMany(x => x.Properties));
-    allAttributes.AddRange(models.VariantModels.SelectMany(x => x.Properties));
-    allAttributes.AddRange(models.CategoryModels.SelectMany(x => x.Properties));
-    allAttributes.AddRange(models.VariantGroupModels.SelectMany(x => x.Properties));
-    allAttributes.AddRange(models.CategoryAttributeModels);
-    var uniqueAttributes = allAttributes.GroupBy(p => p.Alias).Select(g => g.First()).ToList();
+var apiClient = new Struct.App.Api.Client.StructApiClient(pimUrl, apiKey);
+var models = apiClient.Miscellaneous.GetModels();
+var allAttributes = new List<ModelStructure.AttributeModel>();
+allAttributes.AddRange(models.ProductModels.SelectMany(x => x.Properties));
+allAttributes.AddRange(models.VariantModels.SelectMany(x => x.Properties));
+allAttributes.AddRange(models.CategoryModels.SelectMany(x => x.Properties));
+allAttributes.AddRange(models.VariantGroupModels.SelectMany(x => x.Properties));
+allAttributes.AddRange(models.CategoryAttributeModels);
+var uniqueAttributes = allAttributes.GroupBy(p => p.Alias).Select(g => g.First()).ToList();
 #>
 using System;
 using System.Collections.Generic;
-using Struct.PIM.Api.Models.Shared;
-using Struct.PIM.Api.Models.Attribute;
+using Struct.App.Api.Models.Shared;
+using Struct.App.Api.Models.Attribute;
 
 namespace <#= namespaceName #>
 {
     #region ProductModels
     <# foreach (var model in models.ProductModels) {
         var properties = addCategoryProperties ? model.Properties.Concat(models.CategoryAttributeModels).GroupBy(x => x.Alias).Select(x => x.First()).ToList() : model.Properties;
-        WriteLine(GenerateClass(model.Alias + "Product", properties, models.GlobalListModels, false));
+WriteLine(GenerateClass(model.Alias + "Product", properties, models.GlobalListModels, false));
     } #>
     #endregion
 
     #region VariantModels
     <# foreach (var model in models.VariantModels) {
         var properties = addCategoryProperties ? model.Properties.Concat(models.CategoryAttributeModels).GroupBy(x => x.Alias).Select(x => x.First()).ToList() : model.Properties;
-        WriteLine(GenerateClass(model.Alias + "Variant", properties, models.GlobalListModels, false));
+WriteLine(GenerateClass(model.Alias + "Variant", properties, models.GlobalListModels, false));
     } #>
     #endregion
 
@@ -90,12 +90,12 @@ namespace <#= namespaceName #>
 }
 
 <#+
-private static string GenerateClass(string name, List<Struct.PIM.Api.Models.ModelGenerator.ModelStructure.AttributeModel> properties, List<Struct.PIM.Api.Models.ModelGenerator.ModelStructure.AttributeModel> globalListModels, bool generateSubclasses)
+private static string GenerateClass(string name, List<Struct.App.Api.Models.ModelGenerator.ModelStructure.AttributeModel> properties, List<Struct.App.Api.Models.ModelGenerator.ModelStructure.AttributeModel> globalListModels, bool generateSubclasses)
 {
     return GenerateClassRecursive(name, properties, globalListModels, new StringBuilder(), generateSubclasses);
 }
 
-private static string GenerateClassRecursive(string name, List<ModelStructure.AttributeModel> properties, List<Struct.PIM.Api.Models.ModelGenerator.ModelStructure.AttributeModel> globalListModels, StringBuilder sb, bool generateSubclasses)
+private static string GenerateClassRecursive(string name, List<ModelStructure.AttributeModel> properties, List<Struct.App.Api.Models.ModelGenerator.ModelStructure.AttributeModel> globalListModels, StringBuilder sb, bool generateSubclasses)
 {
     sb.AppendLine($"public partial class {ToClassName(name)}Model");
     sb.AppendLine("{");
@@ -103,7 +103,7 @@ private static string GenerateClassRecursive(string name, List<ModelStructure.At
     sb.AppendLine(@"   private Dictionary<string, dynamic> _values = new Dictionary<string, dynamic>();");
     sb.AppendLine("");
 
-    foreach (var property in properties ?? new List<Struct.PIM.Api.Models.ModelGenerator.ModelStructure.AttributeModel>(0))
+    foreach (var property in properties ?? new List<Struct.App.Api.Models.ModelGenerator.ModelStructure.AttributeModel>(0))
     {
         var dataType = GetDataType(property, globalListModels);
 
@@ -160,7 +160,7 @@ private static string GetDataType(ModelStructure.AttributeModel property, List<M
     {
         type = property.Alias + "Model";
     }
-    else if (property.DataType == "FixedListAttribute")
+    else if (property.DataType == "GlobalListValueReferenceAttribute")
     {
         var globalListModel = globalListModels.First(x => x.Alias == property.ReferencedAttribute);
         if (globalListModel.DataType == "ComplexAttribute")
@@ -174,6 +174,7 @@ private static string GetDataType(ModelStructure.AttributeModel property, List<M
     }
     else
     {
+
         type = SimpleAttributeTypeMap[property.DataType];
     }
 
@@ -208,6 +209,7 @@ private static readonly Dictionary<string, string> SimpleAttributeTypeMap = new 
     {"VariantReferenceAttribute", "int?" },
     {"CategoryReferenceAttribute", "int?" },
     {"CollectionReferenceAttribute", "Guid?" },
+    {"AssetReferenceAttribute", "string"},
     {"AttributeReferenceAttribute", "AttributeReference" }
 };
 

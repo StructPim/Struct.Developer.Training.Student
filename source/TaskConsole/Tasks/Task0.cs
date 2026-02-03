@@ -1,19 +1,19 @@
 ﻿using Shared.Helpers;
 using Shared.Import;
-using Struct.PIM.Api.Client;
+using Struct.App.Api.Client;
 
 namespace TaskConsole.Tasks
 {
     internal class Task0
 
     {
-        private readonly StructPIMApiClient _apiClient;
+        private readonly StructApiClient _apiClient;
 
         public Task0(ImportService importService)
         {
             var bootstrapOptions = ConfigHelper.GetConfigValue();
 
-            _apiClient = new StructPIMApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
+            _apiClient = new StructApiClient(bootstrapOptions.ApiUrl, bootstrapOptions.ApiKey);
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace TaskConsole.Tasks
         /// <returns></returns>
         public string DoHeartBeat()
         {
-            return _apiClient.Miscellaneous.Heartbeat();
+            return _apiClient.Miscellaneous.Heartbeat().Message;
         }
 
     }

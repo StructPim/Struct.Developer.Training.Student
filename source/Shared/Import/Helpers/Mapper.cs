@@ -1,5 +1,5 @@
 ﻿using Shared.Models;
-using Struct.PIM.Api.Models.Shared;
+using Struct.App.Api.Models.Shared;
 using Struct.PIM.Models;
 
 namespace Shared.Import.Helpers
